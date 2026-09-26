@@ -1,7 +1,91 @@
 @import "tailwindcss";
 
-@layer base {
-  h1 {
-    @apply text-3xl font-semibold;
+@theme {
+  --color-*: initial;
+  --color-clay: #9c492f;
+  --color-focus: #245eb5;
+  --color-forest: #203f32;
+  --color-forest-hover: #142c23;
+  --color-ink: #23362d;
+  --color-line: #d0d5c8;
+  --color-muted: #566357;
+  --color-paper: #fffefa;
+  --color-sage: #dde5d8;
+  --color-sand: #f5f1e7;
+  --color-sun: #ebc76c;
+
+  --radius-*: initial;
+  --radius-sm: 4px;
+
+  --shadow-*: initial;
+  --shadow-overlay: 0 8px 24px #203f3214;
+
+  --spacing-block: 32px;
+  --spacing-control: 8px;
+  --spacing-group: 24px;
+  --spacing-gutter: 24px;
+  --spacing-header: 80px;
+  --spacing-inset: 24px;
+  --spacing-item: 16px;
+  --spacing-label: 12px;
+  --spacing-section: 48px;
+  --spacing-target: 48px;
+
+  --container-page: 1280px;
+  --container-text: 816px;
+
+  --aspect-landscape: 4 / 3;
+  --aspect-panorama: 8 / 3;
+}
+
+@theme inline {
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+@layer theme {
+  @media (width >= 64rem) {
+    :root {
+      --spacing-header: 96px;
+      --spacing-section: 80px;
+    }
   }
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+
+  h1 {
+    @apply font-display text-4xl font-medium lg:text-6xl;
+  }
+
+  h2 {
+    @apply font-display text-3xl font-medium lg:text-4xl;
+  }
+
+  h3 {
+    @apply font-display text-3xl font-medium;
+  }
+
+  h4 {
+    @apply font-sans text-2xl font-semibold;
+  }
+}
+
+@utility typo-caption {
+  @apply text-xs font-normal;
+}
+
+@utility typo-eyebrow {
+  @apply text-xs font-semibold uppercase;
+}
+
+@utility typo-label {
+  @apply text-base font-semibold;
+}
+
+@utility typo-lead {
+  @apply text-xl font-normal;
 }
