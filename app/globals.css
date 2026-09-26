@@ -36,6 +36,9 @@
 
   --aspect-landscape: 4 / 3;
   --aspect-panorama: 8 / 3;
+
+  --breakpoint-*: initial;
+  --breakpoint-desktop: 45rem;
 }
 
 @theme inline {
@@ -44,7 +47,7 @@
 }
 
 @layer theme {
-  @media (width >= 64rem) {
+  @media (width >= 45rem) {
     :root {
       --spacing-header: 96px;
       --spacing-section: 80px;
@@ -58,11 +61,11 @@
   }
 
   h1 {
-    @apply font-display text-4xl font-medium lg:text-6xl;
+    @apply font-display desktop:text-6xl text-4xl font-medium;
   }
 
   h2 {
-    @apply font-display text-3xl font-medium lg:text-4xl;
+    @apply font-display desktop:text-4xl text-3xl font-medium;
   }
 
   h3 {

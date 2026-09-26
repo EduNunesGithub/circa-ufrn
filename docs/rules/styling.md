@@ -41,9 +41,9 @@ The Pen.dev design guides the look but is not translated 1:1: its spacings and d
 - Enforcement: review.
 
 ## R-UI-006: Gap and padding use only the semantic spacing tokens
-Every gap utility (`gap-*`, `gap-x-*`, `gap-y-*`) and padding utility (`p-*`, `px-*`, `py-*`, `pt-*`, `pr-*`, `pb-*`, `pl-*`, `ps-*`, `pe-*`) uses one of the eight tokens below, chosen by role; no other spacing token is valid there (`p-header`, `gap-target` are forbidden). Zero is allowed as a reset (`p-0`, `px-0`, `gap-0`, also with variants such as `lg:p-0`). Other numeric steps (`gap-4`, `p-0.5`, `p-px`) and arbitrary values (`p-[13px]`, `gap-(--x)`) are forbidden. Dimensions keep the numeric scale under R-UI-001.
+Every gap utility (`gap-*`, `gap-x-*`, `gap-y-*`) and padding utility (`p-*`, `px-*`, `py-*`, `pt-*`, `pr-*`, `pb-*`, `pl-*`, `ps-*`, `pe-*`) uses one of the eight tokens below, chosen by role; no other spacing token is valid there (`p-header`, `gap-target` are forbidden). Zero is allowed as a reset (`p-0`, `px-0`, `gap-0`, also with variants such as `desktop:p-0`). Other numeric steps (`gap-4`, `p-0.5`, `p-px`) and arbitrary values (`p-[13px]`, `gap-(--x)`) are forbidden. Dimensions keep the numeric scale under R-UI-001.
 - `gutter`: horizontal padding of every full-width band (24px fixed; page width is capped by `max-w-page`).
-- `section`: vertical padding of sections (48px, 80px ≥lg).
+- `section`: vertical padding of sections (48px, 80px ≥desktop).
 - `block`: between blocks inside a section (heading group ↔ content) and between columns.
 - `group`: between elements of an editorial group (title, text, CTA) and between nav links.
 - `inset`: inner padding of cards, panels, accordions, list rows.
