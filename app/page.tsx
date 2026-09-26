@@ -4,8 +4,8 @@ export default function Home() {
   const isHighlighted = true;
 
   return (
-    <main className="flex min-h-screen items-center justify-center p-8">
-      <h1 className={cn(isHighlighted && "text-blue-600")}>App</h1>
+    <main className="px-gutter py-section flex min-h-screen items-center justify-center">
+      <h1 className={cn(isHighlighted && "text-clay")}>App</h1>
     </main>
   );
 }
