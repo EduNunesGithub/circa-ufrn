@@ -19,6 +19,8 @@ Type, tier, task, acceptance criteria, the diff reference, and the implementer's
 
 ## Steps
 
+**Posture (full review only; not for a second review):** start from the hypothesis that the diff is wrong. Your job is to try to break it, not to confirm it.
+
 1. Read the task, the criteria and the whole diff.
 2. **Context.** Run the context protocol in `AGENTS.md`, using the diff as the touch set (changed and created files). Also read the baselines, or the "Known legacy" lists, of the applicable rules. Record your own manifest.
 3. **Passes**, in this order:
@@ -29,15 +31,22 @@ Type, tier, task, acceptance criteria, the diff reference, and the implementer's
    - (e) **Invented decisions:** choices that look like a new convention and are neither declared nor covered by a rule; declared local decisions that are normative under the decision gate in `AGENTS.md`.
    - (f) **Tests:** is the changed behaviour covered? Do the tests check the criteria, or only the implementation?
    - (g) **Exemplars:** if the diff changes or deletes a file that a rule cites as an exemplar, does the citation still hold?
-4. **Normative task:** also run `.agents/skills/rule-change/references/canon-check.md`. Check the change against the rest of the canon: conflicts, duplication, testability, and consistency between validity and baseline.
-5. Do not comment on style that a check covers, or that the canon does not require. Do not redo the implementation, and do not reread the repository.
+4. **Attacks.** For each acceptance criterion and each semantic change in the diff, try to build a concrete failure scenario: an input, a state, a caller or a sequence under which the diff misbehaves or the criterion is not met. A **semantic change** is each changed behaviour (what the code does differently for whoever uses it), targeted by `path:line`. A refactor with no behaviour change needs no attack beyond the criteria. Record every attempt, at least one per target, with its result:
+   - **refuted:** the scenario cannot happen; state why in one line (the code, test or fact that stops it);
+   - **finding:** the scenario works; it becomes a finding with basis `evidence` (the scenario), and the attack cites the finding ID;
+   - **inconclusive:** you can neither refute nor confirm it; state what is missing to decide.
+
+   Refuted and inconclusive attacks do not block.
+
+5. **Normative task:** also run `.agents/skills/rule-change/references/canon-check.md`. Check the change against the rest of the canon: conflicts, duplication, testability, and consistency between validity and baseline.
+6. Do not comment on style that a check covers, or that the canon does not require. Do not redo the implementation, and do not reread the repository.
 
 ## Findings need a basis
 
 Each finding must rest on one of:
 - (a) a rule ID, with the part of its scope that matches;
 - (b) an acceptance criterion that is violated;
-- (c) concrete evidence of a defect: a reproducible scenario, a proposed failing test, or a contradiction pointed out in the code.
+- (c) concrete evidence of a defect: a reproducible scenario, a proposed failing test, or a contradiction pointed out in the code. A successful attack (step 4) is such evidence.
 
 Anything else is a **suggestion**: it is listed, and it does not block.
 
@@ -46,6 +55,10 @@ Anything else is a **suggestion**: it is listed, and it does not block.
 ```
 Verdict: APPROVE | CHANGES | BLOCKED: decision
 Manifest: <rule files, rule IDs, exemplars consulted>
+Attacks:
+- [A1] target: criterion <n> | <path:line>
+  attempt: <the failure scenario tried>
+  result: refuted (<why, one line>) | finding F<n> | inconclusive (<what is missing to decide>)
 Findings:
 - [F1] category: normative | criteria | semantic | indirect | invented-decision | tests | exemplar | canon
   location: <path:line>
@@ -57,7 +70,7 @@ Suggestions: <...> | none
 Canon issues (for a human decision): <ambiguity or conflict, with rule IDs> | none
 ```
 
-`APPROVE`: no blocking findings. `CHANGES`: at least one blocking finding. `BLOCKED: decision`: you cannot judge without a normative decision (a gap, an ambiguity or a conflict in the canon).
+`APPROVE`: no blocking findings. `CHANGES`: at least one blocking finding. Both require an attack recorded for every acceptance criterion and every semantic change; otherwise the review is incomplete. `BLOCKED: decision`: you cannot judge without a normative decision (a gap, an ambiguity or a conflict in the canon); it does not require complete attacks, so report it even if some are missing.
 
 ## Second review
 

@@ -12,8 +12,8 @@ The Lead reads "Flow". The implementer reads "Drafting". The reviewer runs `refe
 
 1. **Pin the decision down with the human:** statement, scope (globs), validity, enforcement, exemplar. If anything is open, send one decision request (`deliver` §9). The human decides; agents only propose.
 2. **Brief an implementer** as in `deliver` §2, with type `normative`. Put the human's decision, verbatim, in the acceptance criteria. Tier T2, or T3 if the change alters architecture or requires migrating persisted data.
-3. **Gate and review** as in `deliver` §4–§6. The protected-path check does not apply. The reviewer runs the canon checklist.
-4. **Ask for ratification.** Present a diff summary: rules, checks, baselines, routing and ADR. Ask the human to ratify explicitly. Without ratification the task is not done. Merging also requires CODEOWNERS approval.
+3. **Gate, review, failures and budget** as in `deliver` §4–§8. The protected-path check does not apply. The reviewer runs the canon checklist.
+4. **Done and ratification.** Meet `deliver` §10 and give its final report, with a diff summary of rules, checks, baselines, routing and ADR. Then, as the extra step, ask the human to ratify explicitly. Without ratification the task is not done. Merging also requires CODEOWNERS approval.
 5. If a code task was blocked on this decision, resume it with a fresh implementer after ratification.
 
 ## Drafting (Implementer)

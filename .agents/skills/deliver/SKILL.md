@@ -76,7 +76,7 @@ Never pass the implementer's plan, reasoning or manifest.
 
 ## 6. Triage
 
-For each finding:
+For each finding (a successful attack is a finding with basis `evidence`; refuted and inconclusive attacks need no triage; an incomplete `APPROVE` or `CHANGES` is F6; a reviewer's `BLOCKED: decision` is always F4):
 
 | Situation | Action |
 |---|---|
@@ -99,9 +99,9 @@ For each finding:
 | F1 Mechanical | `verify` red with a clear message | Resume the same implementer with the failure lines |
 | F2 Non-conformance | Valid finding citing a rule | Resume with the IDs. If the same rule fails again, compare manifests: rule not loaded means a routing failure (§6); rule loaded but misread means ambiguity (F4) |
 | F3 Semantic | Concrete bug | Resume with the finding and a failing test. If it repeats: fresh context, possibly F8 |
-| F4 Normative gap | `BLOCKED: decision`, ambiguity, doc/code conflict, stale rule | Do not retry. Decision request |
+| F4 Normative gap | `BLOCKED: decision` (implementer, or reviewer even with attacks missing), ambiguity, doc/code conflict, stale rule | Do not retry. Decision request |
 | F5 Scope | `ESCALATE: scope`, or real tier higher than planned | Reclassify, split the task, or ask for T3 approval. Then a fresh implementer |
-| F6 Wrong reviewer | Finding without basis, or finding dropped | Dismiss. Second review only for a real dispute |
+| F6 Wrong reviewer | Finding without basis, finding dropped, or incomplete full review (`APPROVE` or `CHANGES` with an attack missing for a criterion or a changed behaviour; second reviews record no attacks) | Dismiss; second review only for a real dispute. Incomplete review: discard it and spawn a new `reviewer` (see budget); if it repeats, go to the human |
 | F7 Environment | Flaky test, build broken outside the diff, tool unavailable | Do not retry the implementation. Report it; it becomes a separate task |
 | F8 Capability | F3 repeated with correct context and a clear rule | One escalation: a fresh `implementer-max`. If it persists, go to the human |
 
@@ -112,7 +112,7 @@ Only F8 is solved by more capacity. Never escalate for F2 ambiguity, F4 or F5: m
 - **Resume the same implementer** (continue its thread) when the failure is local and its understanding is still correct.
 - **Spawn a fresh implementer** when it may be anchored on a wrong reading, the approach must change, its context has piled up many attempts, or a rule or routing entry was corrected. Give it the brief plus the restart note.
 
-Budget per task (hard limits):
+Budget per task (hard limits). When it runs out, or on early stop, send a failure report (§9) and wait. Never loop implicitly.
 
 | Resource | Limit |
 |---|---|
@@ -121,9 +121,8 @@ Budget per task (hard limits):
 | Fresh restarts | 1 |
 | Escalations to `implementer-max` | 1 (may coincide with the restart) |
 | Second reviews | 1 |
+| Replacements of an incomplete review (F6) | 1; does not consume a review cycle |
 | Early stop | The same finding (rule + location) reappears, or the number of blocking findings does not drop between cycles |
-
-When the budget runs out, or on early stop, send a failure report (§9) and wait. Never loop implicitly.
 
 ## 9. Talking to the human
 
@@ -142,9 +141,9 @@ Blocks: <what waits on this>
 
 Declare **ready for merge** only when:
 1. `verify` is green, run by you;
-2. the verdict is `APPROVE`, or every blocking finding is resolved or dismissed with a reason;
+2. the last full review (not a second review) is complete (an attack for every criterion and changed behaviour, see `review`), and its verdict is `APPROVE`, or `CHANGES` with every blocking finding resolved or dismissed with a reason (a `BLOCKED: decision` review never closes a task);
 3. no normative decision is pending;
 4. the diff is within scope and touches no protected path outside a normative task;
 5. the final tier matches the flow that was followed.
 
-Final report: what changed; declared local decisions; dismissed findings and why; pending items (routing fixes, rule clarifications, candidates for promotion to a check). Do not commit or merge unless the human asks; merging follows the repository's policy.
+Final report: what changed; declared local decisions; dismissed findings and why; pending items (the last full review's inconclusive attacks with what is missing to decide, routing fixes, rule clarifications, candidates for promotion to a check). Do not commit or merge unless the human asks; merging follows the repository's policy.
