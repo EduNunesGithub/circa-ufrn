@@ -8,7 +8,7 @@
 The product has only two layouts, mobile and desktop, with no intermediate size. Tailwind's default breakpoints (`sm`, `md`, `lg`, `xl`, `2xl`) invite intermediate layouts the design does not have, and the theme switched to the larger layout at `lg` (64rem), leaving 45–64rem screens on the mobile layout.
 
 ## Decision
-The `@theme` in `app/globals.css` resets the breakpoints (`--breakpoint-*: initial`) and declares only `--breakpoint-desktop: 45rem` (720px). Responsive variants use `desktop:`. The `section` spacing token is 48px, 80px ≥desktop.
+The `@theme` in `app/globals.css` resets the breakpoints (`--breakpoint-*: initial`) and declares only `--breakpoint-desktop: 45rem` (720px). Responsive variants use `desktop:`. The `section` spacing token is 40px, 64px ≥desktop.
 
 ## Alternatives considered
 - Keep Tailwind's default breakpoints and use only `lg`: no theme change, but the unused breakpoints stay available and the switch stays at 64rem.

@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <main className="px-gutter py-section flex min-h-screen items-center justify-center">
-      <h1 className={cn(isHighlighted && "text-clay")}>App</h1>
+      <h1 className={cn(isHighlighted && "text-secondary")}>App</h1>
     </main>
   );
 }
