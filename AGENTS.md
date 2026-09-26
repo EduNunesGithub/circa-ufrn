@@ -106,8 +106,21 @@ Derived from the `paths` frontmatter of each rule file. Keep them in sync (see `
 
 | Glob | Rule file |
 |---|---|
+| app/** | docs/rules/file-structure.md |
+| app/**/*.{css,ts,tsx} | docs/rules/styling.md |
 | app/**/*.{ts,tsx} | docs/rules/code-style.md |
+| components/** | docs/rules/file-structure.md |
+| components/**/*.{ts,tsx} | docs/rules/code-style.md |
+| components/**/*.{ts,tsx} | docs/rules/styling.md |
+| contexts/** | docs/rules/file-structure.md |
+| contexts/**/*.{ts,tsx} | docs/rules/code-style.md |
+| contexts/**/*.{ts,tsx} | docs/rules/styling.md |
+| hooks/** | docs/rules/file-structure.md |
+| hooks/**/*.{ts,tsx} | docs/rules/code-style.md |
+| hooks/**/*.{ts,tsx} | docs/rules/styling.md |
+| lib/** | docs/rules/file-structure.md |
 | lib/**/*.{ts,tsx} | docs/rules/code-style.md |
+| lib/**/*.{ts,tsx} | docs/rules/styling.md |
 
 Type triggers (routing by kind of change, not by path):
 - none

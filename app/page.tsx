@@ -5,15 +5,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen items-center justify-center p-8">
-      <h1
-        className={cn(
-          "text-2xl font-semibold",
-          isHighlighted && "text-blue-600",
-          "text-3xl",
-        )}
-      >
-        App
-      </h1>
+      <h1 className={cn(isHighlighted && "text-blue-600")}>App</h1>
     </main>
   );
 }

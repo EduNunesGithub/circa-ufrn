@@ -1,6 +1,9 @@
 ---
 paths:
   - "app/**/*.{ts,tsx}"
+  - "components/**/*.{ts,tsx}"
+  - "contexts/**/*.{ts,tsx}"
+  - "hooks/**/*.{ts,tsx}"
   - "lib/**/*.{ts,tsx}"
 ---
 # Code style
@@ -21,6 +24,12 @@ Import project code only through the path alias configured for the project. Rela
 Source code contains no comments, including doc comments such as JSDoc or docstrings. Express intent through names, types and structure. Only exceptions: tool directives (lint or type suppressions, compiler pragmas, shebangs) and legally required license headers.
 - Reason: comments drift from the code; names and tests don't.
 - Validity: new-code. Legacy: none.
+- Enforcement: review.
+
+## R-STYLE-004: Code stays lean, with clear responsibilities
+Keep every unit (component, hook, context, module) as lean as possible, with one clear responsibility. When a unit accumulates too much responsibility, evaluate extracting utilities into `lib/`, logic into other hooks, or UI into sub-components. Each of these triggers requires that evaluation: the file is longer than 150 lines; a component contains non-UI logic; a component or hook contains unrelated effects.
+- Reason: small units with one job are easier to read, reuse and change.
+- Validity: total. Legacy: none.
 - Enforcement: review.
 
 ## Known legacy
