@@ -61,7 +61,7 @@ A color in a utility is always a theme color token utility (`bg-forest`, `text-i
 - Enforcement: check ESLint `no-restricted-syntax` on string and template literals (its message cites R-UI-007); review for the rest.
 
 ## R-UI-008: The token set is closed
-The `@theme` blocks in `app/globals.css` and their responsive overrides (colors, radius, shadow, spacing, containers, aspect ratios, fonts) are created, changed or removed only in a normative task ratified by a human. A code task that needs a new or different token stops with `BLOCKED: decision`. A normative task that adds, renames or removes a spacing token also updates the tailwind-merge configuration in `lib/cn.ts` in the same diff.
+The `@theme` blocks in `app/globals.css` and their responsive overrides (colors, radius, shadow, spacing, containers, aspect ratios, fonts) are created, changed or removed only in a normative task ratified by a human. A code task that needs a new or different token stops with `BLOCKED: decision`. A normative task that adds, renames or removes any custom theme token whose utility tailwind-merge could confuse or fail to group (spacing, including `header` and `target`; containers; shadow; aspect ratios; radius; colors; fonts) also updates the tailwind-merge configuration in `lib/cn.ts` in the same diff, so that `cn` merges the token's utilities with the other classes of the same group.
 - Reason: tokens are the design system's contract; changing one changes every screen (ADR-0001).
 - Validity: total. Legacy: none.
 - Enforcement: review.
