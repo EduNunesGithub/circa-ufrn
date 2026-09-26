@@ -106,6 +106,7 @@ Derived from the `paths` frontmatter of each rule file. Keep them in sync (see `
 | Glob | Rule file |
 |---|---|
 | {{glob}} | {{docs/rules/<area>.md}} |
+| {{source globs}} | docs/rules/code-style.md |
 
 Type triggers (routing by kind of change, not by path):
 - {{e.g. "Changes a persisted schema: read docs/rules/data.md"}}
