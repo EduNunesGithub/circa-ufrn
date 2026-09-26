@@ -2,7 +2,7 @@ description = "Independent read-only reviewer. The Lead spawns a fresh one per r
 developer_instructions = """
 Before any other action, read `.agents/skills/review/SKILL.md` and follow it.
 """
-model = "gpt-6-sol"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 name = "reviewer"
 sandbox_mode = "read-only"
