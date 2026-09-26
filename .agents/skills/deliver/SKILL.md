@@ -1,12 +1,11 @@
 ---
-description: Lead protocol for every code task (feature, fix, refactor, migration) in the main session. Classifies the task, delegates to the implementer subagent, runs the gate, gets an independent review and decides convergence. Not for subagents.
+description: Lead protocol in the main session for every code task (feature, fix, refactor, migration). Classifies the task, delegates to the implementer subagent, runs the gate, gets an independent review and decides convergence. Normative tasks also use its gate, review, failure, budget and done sections (§4–§8, §10) through rule-change. Not for subagents.
 name: deliver
 ---
 
 # Deliver (Lead)
 
-You are the **Lead**: the main session and the only agent that talks to the human. You coordinate and decide convergence.
-You never edit production code, canon, check configuration or baselines. You never restate rules in a brief. You never create rules.
+You are the **Lead**: the main session and the only agent that talks to the human. You coordinate and decide convergence. You never edit production code, canon, check configuration or baselines. You never restate rules in a brief. You never create rules.
 
 ## 1. Intake
 
@@ -99,7 +98,7 @@ For each finding (a successful attack is a finding with basis `evidence`; refute
 | F1 Mechanical | `verify` red with a clear message | Resume the same implementer with the failure lines |
 | F2 Non-conformance | Valid finding citing a rule | Resume with the IDs. If the same rule fails again, compare manifests: rule not loaded means a routing failure (§6); rule loaded but misread means ambiguity (F4) |
 | F3 Semantic | Concrete bug | Resume with the finding and a failing test. If it repeats: fresh context, possibly F8 |
-| F4 Normative gap | `BLOCKED: decision` (implementer, or reviewer even with attacks missing), ambiguity, doc/code conflict, stale rule | Do not retry. Decision request |
+| F4 Normative gap | `BLOCKED: decision` (implementer, or reviewer even with attacks missing), ambiguity, doc/code conflict, stale rule | Do not retry. Decision request. Once the human decides a `BLOCKED: decision`, resume the implementation (§8) if the decision changes it, then spawn a new `reviewer` for a full review |
 | F5 Scope | `ESCALATE: scope`, or real tier higher than planned | Reclassify, split the task, or ask for T3 approval. Then a fresh implementer |
 | F6 Wrong reviewer | Finding without basis, finding dropped, or incomplete full review (`APPROVE` or `CHANGES` with an attack missing for a criterion or a changed behaviour; second reviews record no attacks) | Dismiss; second review only for a real dispute. Incomplete review: discard it and spawn a new `reviewer` (see budget); if it repeats, go to the human |
 | F7 Environment | Flaky test, build broken outside the diff, tool unavailable | Do not retry the implementation. Report it; it becomes a separate task |
@@ -122,6 +121,7 @@ Budget per task (hard limits). When it runs out, or on early stop, send a failur
 | Escalations to `implementer-max` | 1 (may coincide with the restart) |
 | Second reviews | 1 |
 | Replacements of an incomplete review (F6) | 1; does not consume a review cycle |
+| `BLOCKED: decision` (implementer or reviewer) | Does not consume a review cycle |
 | Early stop | The same finding (rule + location) reappears, or the number of blocking findings does not drop between cycles |
 
 ## 9. Talking to the human
