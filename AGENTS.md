@@ -1,6 +1,6 @@
-# {{PROJECT_NAME}}
+# App (name to be decided)
 
-{{One or two lines: what this project is and its main stack.}}
+Web application built with Next.js (App Router), TypeScript and Tailwind CSS. The project name and description are not decided yet.
 
 This file is the kernel of the project canon. Everything an agent needs is here or reachable from here.
 
@@ -68,7 +68,7 @@ Baselines only shrink, except when a new rule is created.
 
 | Check | Baseline (native format of the tool) |
 |---|---|
-| {{check name}} | {{path to baseline or suppression file}} |
+| none | none: no baselines (greenfield, every checked rule has validity `total`) |
 
 ## Commands
 
@@ -80,13 +80,14 @@ If any command below is still a placeholder, the pipeline is not adopted: do not
 
 | Stage | Command |
 |---|---|
-| format | {{format check command}} |
-| lint | {{lint command}} |
-| types | {{type check command, or "none"}} |
-| test | {{test command}} |
-| architecture | {{boundary/architecture check command, or "none"}} |
+| format | `npm run format:check` |
+| lint | `npm run lint` |
+| types | `npm run typecheck` |
+| test | none |
+| architecture | none |
 
-Other: build `{{build command}}` · single test `{{single test command}}`.
+Other: build `npm run build` · single test none.
+There is no test runner yet: code tasks do not add tests until one is adopted through a normative task.
 
 ## Protected paths
 
@@ -96,7 +97,7 @@ Canon, sensors and adapters. They change only in a normative task ratified by a 
 - `docs/rules/**`, `docs/decisions/**`
 - `.agents/skills/**`, `.claude/**`, `.codex/**`
 - `evals/**`, `.github/CODEOWNERS`
-- Check configuration: {{lint/test/architecture config files}}
+- Check configuration: `eslint.config.mjs`, `.prettierrc.json`, `.prettierignore`, `.commitlintrc.json`, `lefthook.yml`, `tsconfig.json`
 - Baselines: every file in the baseline table above
 
 ## Routing
@@ -105,14 +106,14 @@ Derived from the `paths` frontmatter of each rule file. Keep them in sync (see `
 
 | Glob | Rule file |
 |---|---|
-| {{glob}} | {{docs/rules/<area>.md}} |
-| {{source globs}} | docs/rules/code-style.md |
+| app/**/*.{ts,tsx} | docs/rules/code-style.md |
+| lib/**/*.{ts,tsx} | docs/rules/code-style.md |
 
 Type triggers (routing by kind of change, not by path):
-- {{e.g. "Changes a persisted schema: read docs/rules/data.md"}}
+- none
 
 ## Global invariants
 
 At most 10. Each has an ID and follows the rule format in `docs/rules`.
 
-- {{R-GLOBAL-001: statement. Enforcement: check or review.}}
+- none

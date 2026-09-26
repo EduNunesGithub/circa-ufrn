@@ -1,0 +1,16 @@
+pre-commit:
+  jobs:
+    - name: eslint
+      glob: "*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}"
+      run: npx eslint --fix --no-warn-ignored {staged_files}
+      stage_fixed: true
+    - name: prettier
+      run: npx prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+    - name: typecheck
+      run: npx tsc --noEmit
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: npx commitlint --edit {1}

@@ -1,0 +1,12 @@
+.agents/
+.claude/
+.codex/
+.github/
+.next/
+AGENTS.md
+CLAUDE.md
+docs/
+evals/
+out/
+package-lock.json
+README.md
