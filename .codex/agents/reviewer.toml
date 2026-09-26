@@ -1,0 +1,8 @@
+description = "Independent read-only reviewer. The Lead spawns a fresh one per review with the task, acceptance criteria and a diff reference; it returns a verdict with grounded findings."
+developer_instructions = """
+Before any other action, read `.agents/skills/review/SKILL.md` and follow it.
+"""
+model = "gpt-6-sol"
+model_reasoning_effort = "high"
+name = "reviewer"
+sandbox_mode = "read-only"

@@ -1,0 +1,10 @@
+/.agents/           {{@owner}}
+/.claude/           {{@owner}}
+/.codex/            {{@owner}}
+/.github/CODEOWNERS {{@owner}}
+/AGENTS.md          {{@owner}}
+/CLAUDE.md          {{@owner}}
+/docs/decisions/    {{@owner}}
+/docs/rules/        {{@owner}}
+/evals/             {{@owner}}
+{{/path/to/check-config-or-baseline}} {{@owner}}

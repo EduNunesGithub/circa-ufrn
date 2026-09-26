@@ -1,0 +1,7 @@
+description = "Implementer at max effort, only for the single F8 capability escalation. The Lead spawns a fresh one with a task brief; it implements within scope and returns a short report."
+developer_instructions = """
+Before any other action, read `.agents/skills/implement/SKILL.md` and follow it.
+"""
+model = "gpt-6-sol"
+model_reasoning_effort = "max"
+name = "implementer-max"
