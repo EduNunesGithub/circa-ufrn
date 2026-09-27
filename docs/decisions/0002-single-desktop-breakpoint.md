@@ -1,6 +1,6 @@
 # ADR-0002: A single `desktop` breakpoint at 45rem
 
-- Status: accepted
+- Status: superseded-by ADR-0003
 - Date: 2026-09-26
 - Rules: R-UI-006
 

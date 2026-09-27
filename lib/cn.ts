@@ -4,6 +4,7 @@ const twMerge = extendTailwindMerge({
   extend: {
     theme: {
       aspect: ["landscape", "portrait", "square", "video"],
+      breakpoint: ["desktop", "wide"],
       color: [
         "accent",
         "accent-soft",

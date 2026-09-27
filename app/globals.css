@@ -76,6 +76,7 @@
 
   --breakpoint-*: initial;
   --breakpoint-desktop: 45rem;
+  --breakpoint-wide: 56.75rem;
 }
 
 @theme inline {
