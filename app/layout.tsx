@@ -8,6 +8,8 @@ import {
 } from "next/font/google";
 
 import "@/app/globals.css";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { cn } from "@/lib/cn";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -46,7 +48,11 @@ export default function RootLayout({
       )}
       lang="pt-BR"
     >
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

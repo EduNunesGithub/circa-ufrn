@@ -134,6 +134,14 @@
   @apply font-sans text-xs font-normal;
 }
 
+@utility typo-caption-medium {
+  @apply font-sans text-xs font-medium;
+}
+
+@utility typo-caption-strong {
+  @apply font-sans text-xs font-semibold;
+}
+
 @utility typo-display {
   @apply font-display desktop:text-6xl text-4xl font-normal;
 }
@@ -144,6 +152,10 @@
 
 @utility typo-label-sm {
   @apply font-sans text-xs font-semibold uppercase;
+}
+
+@utility typo-label-strong {
+  @apply font-sans text-sm font-semibold;
 }
 
 @utility typo-lead {
@@ -168,4 +180,12 @@
 
 @utility typo-small {
   @apply font-sans text-xs font-normal;
+}
+
+@utility typo-title {
+  @apply font-display text-2xl font-normal;
+}
+
+@utility typo-wordmark {
+  @apply font-display text-3xl font-normal tracking-wide;
 }
