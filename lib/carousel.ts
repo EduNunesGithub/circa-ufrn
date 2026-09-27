@@ -33,7 +33,7 @@ export function bindArrowKeys(swiper: SwiperInstance): void {
   }
 
   swiper.el.addEventListener("keydown", handleKeyDown);
-  swiper.once("destroy", () => {
+  swiper.on("destroy", () => {
     swiper.el.removeEventListener("keydown", handleKeyDown);
   });
 }

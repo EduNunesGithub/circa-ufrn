@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { CarouselController } from "@/hooks/use-carousel";
 
 import { bindArrowKeys, carouselMessages } from "@/lib/carousel";
-import { bindViewportSync, syncCarouselLayout } from "@/lib/carousel-layout";
+import { syncCarouselLayout } from "@/lib/carousel-layout";
 import { cn } from "@/lib/cn";
 import { focusRingClassName, type Tone } from "@/lib/control-styles";
 
@@ -40,7 +40,6 @@ export function Carousel({
 
   function handleSwiper(swiper: SwiperInstance) {
     bindArrowKeys(swiper);
-    bindViewportSync(swiper, handleResize);
     onSwiper(swiper);
   }
 
@@ -64,7 +63,7 @@ export function Carousel({
         prevSlideMessage: carouselMessages.prev,
         slideLabelMessage: carouselMessages.slideLabel,
       }}
-      className={cn("w-full", focusRingClassName(tone), className)}
+      className={cn(focusRingClassName(tone), className)}
       modules={[A11y]}
       onFromEdge={onChange}
       onInit={(swiper) => syncCarouselLayout(swiper, { bleed, spaced })}
@@ -74,6 +73,7 @@ export function Carousel({
       onSlideChange={onChange}
       onSnapGridLengthChange={onChange}
       onSwiper={handleSwiper}
+      resizeObserver={false}
       slidesPerView="auto"
       spaceBetween={0}
       tabIndex={0}

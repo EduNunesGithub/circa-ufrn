@@ -5,20 +5,6 @@ type LayoutOptions = {
   spaced: boolean;
 };
 
-export function bindViewportSync(
-  swiper: SwiperInstance,
-  sync: (swiper: SwiperInstance) => void,
-): void {
-  function handleResize() {
-    sync(swiper);
-  }
-
-  window.addEventListener("resize", handleResize);
-  swiper.once("destroy", () => {
-    window.removeEventListener("resize", handleResize);
-  });
-}
-
 export function syncCarouselLayout(
   swiper: SwiperInstance,
   { bleed, spaced }: LayoutOptions,
@@ -49,20 +35,10 @@ export function syncCarouselLayout(
   }
 }
 
-function isDesktop(): boolean {
-  const breakpoint = getComputedStyle(document.documentElement)
-    .getPropertyValue("--breakpoint-desktop")
-    .trim();
-
-  return (
-    breakpoint !== "" && window.matchMedia(`(width >= ${breakpoint})`).matches
-  );
-}
-
 function measureBleed(el: HTMLElement): [number, number] {
   const column = el.parentElement;
 
-  if (!column || !isDesktop()) {
+  if (!column) {
     return [0, 0];
   }
 

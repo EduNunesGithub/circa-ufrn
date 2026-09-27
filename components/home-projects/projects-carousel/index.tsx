@@ -34,7 +34,7 @@ export function ProjectsCarousel({
       <div className="desktop:order-3 order-2 min-w-0 basis-full">
         <Carousel
           bleed
-          className="-mr-gutter w-auto -outline-offset-4"
+          className="-outline-offset-4"
           controller={controller}
           id={carouselId}
           label="Projetos em andamento"

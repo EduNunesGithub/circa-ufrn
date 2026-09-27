@@ -23,18 +23,16 @@ export function ProcessCarousel({
 
   return (
     <div className="gap-block flex flex-col">
-      <div className="max-desktop:-mr-gutter min-w-0">
-        <Carousel
-          bleed
-          className="w-auto -outline-offset-4"
-          controller={controller}
-          id={carouselId}
-          label="Etapas do processo de restauração"
-          slideClassName="w-68 wide:w-72"
-        >
-          {children}
-        </Carousel>
-      </div>
+      <Carousel
+        bleed
+        className="-outline-offset-4"
+        controller={controller}
+        id={carouselId}
+        label="Etapas do processo de restauração"
+        slideClassName="w-68 wide:w-72"
+      >
+        {children}
+      </Carousel>
       <div className="gap-item flex items-center justify-end">
         <div className="desktop:hidden min-w-0 flex-1">{footerLink}</div>
         <CarouselControls
