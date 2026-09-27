@@ -2,7 +2,7 @@
 
 Human documentation. Agents do not need this file: what they need is in `AGENTS.md` and the skills. If this file and those artifacts disagree, the artifacts win.
 
-A development pipeline for Codex and Claude Code built only from native primitives: persistent instructions, skills and subagents. It uses no scripts, generators or hooks. It fights drift with four mechanisms:
+A development pipeline for Codex and Claude Code built only from native primitives: persistent instructions, skills and subagents. It uses no pipeline scripts, generators or agent hooks (git hooks such as lefthook are project tooling). It fights drift with four mechanisms:
 1. a small canon with explicit authority;
 2. sensors the acting agent does not control;
 3. context routed by path to the rules, instead of to neighbouring code;
@@ -22,10 +22,10 @@ docs/decisions/NNNN-*.md          ADRs, only when the reason is worth revisiting
   references/canon-check.md       canon integrity checklist (agent-executed)
   assets/                         rule file and ADR templates
 .claude/skills/*/SKILL.md         pointers to .agents/skills (Claude does not scan .agents/skills)
-.claude/agents/                   implementer-{low,medium,high,max} and reviewer (high, no write tools), all Opus 5.5
+.claude/agents/                   implementer-{low,medium,high,max} and reviewer (high; no edit tools, read-only by protocol), all Opus 5.5
 .claude/settings.json             Lead model and effort, forks denied, auto memory off, skill visibility, spawn depth
 .codex/config.toml                Lead model and effort, concurrency, memories off
-.codex/agents/                    implementer-{low,medium,high,max} and reviewer (high, read-only), all gpt-6-sol
+.codex/agents/                    implementer-{low,medium,high,max} and reviewer (high, read-only), all gpt-5.6-sol
 .github/CODEOWNERS                human approval for canon, sensors and adapters
 evals/canaries.md                 consistency suite, run by humans
 ```
@@ -46,19 +46,21 @@ evals/canaries.md                 consistency suite, run by humans
 3. **Sensors first.** Pick the project's own format, lint, type, test and architecture tools. Configure the 3–5 checks worth most, each with a baseline of the existing violations in the tool's native format.
 4. **Fill the kernel slots** through a normative task. In the main session, invoke `rule-change` (`$rule-change` in Codex, `/rule-change` in Claude Code) and ask it to fill the project header, the `verify` commands, the baseline table, the check configuration paths and the CODEOWNERS owner.
 5. **Write the first 5–10 rules** with `rule-change`. Start with the decisions that diverge most in the code today, and mark exemplars.
-6. Run the canon checklist once (ask the Lead to have a reviewer run `.agents/skills/rule-change/references/canon-check.md`). No placeholder may remain outside `assets/`.
-7. Write 6–10 canaries in `evals/canaries.md` and run them on your main provider. Add the second provider once the first one is stable.
+6. Run the canon checklist once (ask the Lead to have a reviewer run `.agents/skills/rule-change/references/canon-check.md`). No placeholder may remain in a protected path outside `assets/`, except the canary template entry in `evals/canaries.md`, which step 7 replaces.
+7. Write 6–10 canaries in `evals/canaries.md`, replacing the template entry, and run them on your main provider. Add the second provider once the first one is stable.
 
 After that, code tasks are just requests to the main session: it follows `deliver`.
 
 ## Deviations from the architecture document
 
+The architecture document is the design document this template was derived from; it is not included in the repository.
+
 | Document | Here | Why |
 |---|---|---|
-| `canon` is a deterministic check inside `verify` | `canon-check.md` is a checklist run by the implementer (while drafting) and by the reviewer, in normative tasks. The Lead's gate mechanically blocks protected paths in every other task | No scripts. The canon can only change in normative tasks, so checking it there covers every change path. It is less reliable than a script |
+| `canon` is a deterministic check inside `verify` | `canon-check.md` is a checklist run by the implementer (while drafting) and by the reviewer, in normative tasks. The Lead's gate mechanically blocks protected paths in every other task, except that a migration may remove baseline entries | No scripts. The canon can only change in normative tasks, so checking it there covers every change path. It is less reliable than a script |
 | `verify` is a pipeline command with a summarized mode | `verify` is the list of the project's own commands in the kernel; agents condense the output to one line per failure | The project's tools are project tooling, not pipeline tooling |
 | `.claude/skills` is a symlink to `.agents/skills` | One-line pointer skills in `.claude/skills` | Git on Windows checks symlinks out as text files (`core.symlinks=false`), and Claude Code does not scan `.agents/skills` |
-| Model routing: Sonnet 5 / Opus 5.5 / Fable 5.1 and gpt-6-sol / gpt-6-astra; the implementer is escalated by passing a model at spawn time | One model per provider (Opus 5.5, gpt-6-sol). Effort follows the tier: T1 low, T2 medium, T3 high, max after the single F8 escalation. Lead medium, reviewer high. Each effort level is its own agent (`implementer-<effort>`) | Claude Code can set a subagent's effort only in its agent file, not per invocation. With one agent per level in both providers, the tier-to-agent table lives in the neutral `deliver` skill, and no spawn-time override is needed |
+| Model routing: several models per provider; the implementer is escalated by passing a model at spawn time | One model per provider (Opus 5.5, gpt-5.6-sol); effort follows the tier, one agent per level (`implementer-<effort>`) | Claude Code sets a subagent's effort only in its agent file, so the tier-to-agent table lives in the neutral `deliver` skill |
 
 ## Checking the adapters
 

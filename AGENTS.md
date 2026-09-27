@@ -72,7 +72,6 @@ Baselines only shrink, except when a new rule is created.
 
 ## Commands
 
-<!-- If this section still has placeholders, the pipeline is not adopted yet. -->
 If any command below is still a placeholder, the pipeline is not adopted: do not run code tasks, and tell the human to fill the kernel slots through `rule-change`.
 
 `verify` means: run every stage below from the repository root, in order. Report only failures, one line each:
@@ -80,9 +79,9 @@ If any command below is still a placeholder, the pipeline is not adopted: do not
 
 | Stage | Command |
 |---|---|
-| format | `npm run format:check` |
-| lint | `npm run lint` |
-| types | `npm run typecheck` |
+| format | `npx prettier --check .` |
+| lint | `npx eslint . --max-warnings 0` |
+| types | `npx tsc --noEmit` |
 | test | none |
 | architecture | none |
 
@@ -91,11 +90,11 @@ There is no test runner yet: code tasks do not add tests until one is adopted th
 
 ## Protected paths
 
-Canon, sensors and adapters. They change only in a normative task ratified by a human. Migration tasks may only **remove** baseline entries.
+Canon, sensors and adapters. The protected-path check: a diff that touches them fails the gate unless the task is normative (the human ratifies it at Done) or a migration that only **removes** baseline entries.
 
 - `AGENTS.md`, `CLAUDE.md`
 - `docs/rules/**`, `docs/decisions/**`
-- `.agents/skills/**`, `.claude/**`, `.codex/**`
+- `.agents/**`, `.claude/**`, `.codex/**`
 - `evals/**`, `.github/CODEOWNERS`
 - Check configuration: `eslint.config.mjs`, `.prettierrc.json`, `.prettierignore`, `.commitlintrc.json`, `lefthook.yml`, `tsconfig.json`
 - Baselines: every file in the baseline table above

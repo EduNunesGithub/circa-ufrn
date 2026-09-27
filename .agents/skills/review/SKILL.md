@@ -29,7 +29,7 @@ Type, tier, task, acceptance criteria, the diff reference, and the implementer's
    - (c) **Semantics:** logic, errors, states, domain edge cases.
    - (d) **Indirect effects:** callers, contracts, persisted data, concurrency, obvious performance issues.
    - (e) **Invented decisions:** choices that look like a new convention and are neither declared nor covered by a rule; declared local decisions that are normative under the decision gate in `AGENTS.md`.
-   - (f) **Tests:** is the changed behaviour covered? Do the tests check the criteria, or only the implementation?
+   - (f) **Tests** (only if the kernel's `test` stage is not `none`): is the changed behaviour covered? Do the tests check the criteria, or only the implementation?
    - (g) **Exemplars:** if the diff changes or deletes a file that a rule cites as an exemplar, does the citation still hold?
 4. **Attacks.** For each acceptance criterion and each semantic change in the diff, try to build a concrete failure scenario: an input, a state, a caller or a sequence under which the diff misbehaves or the criterion is not met. A **semantic change** is each changed behaviour (what the code does differently for whoever uses it), targeted by `path:line`. A refactor with no behaviour change needs no attack beyond the criteria. Record every attempt, at least one per target, with its result:
    - **refuted:** the scenario cannot happen; state why in one line (the code, test or fact that stops it);
@@ -74,4 +74,4 @@ Canon issues (for a human decision): <ambiguity or conflict, with rule IDs> | no
 
 ## Second review
 
-If the Lead asks you one focused question ("Is finding F valid under rule R?"), answer only that: `valid` or `invalid`, with the basis.
+If the Lead asks you one focused question ("Is finding F valid under rule R?"), answer only that: `valid` or `invalid`, with the basis. A second review records no attacks.

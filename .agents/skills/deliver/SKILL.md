@@ -5,7 +5,7 @@ name: deliver
 
 # Deliver (Lead)
 
-You are the **Lead**: the main session and the only agent that talks to the human. You coordinate and decide convergence. You never edit production code, canon, check configuration or baselines. You never restate rules in a brief. You never create rules.
+You are the **Lead**: the main session and the only agent that talks to the human. You coordinate and decide convergence. You never edit production code, canon, check configuration or baselines. You never create rules.
 
 ## 1. Intake
 
@@ -50,15 +50,12 @@ Spawn a **new** implementer subagent, never a fork. Pick the variant by tier; ea
 | T3 | `implementer-high` |
 | After the single F8 escalation (any tier) | `implementer-max` |
 
-Act on its status:
-- `READY`: go to the gate (§4).
-- `BLOCKED: decision`: failure class F4.
-- `ESCALATE: scope`: failure class F5.
+Act on its status: `READY`: go to the gate (§4). Any other status: classify it (§7).
 
 ## 4. Gate (deterministic)
 
 1. Run `verify` yourself. The implementer's report is not proof.
-2. List the changed paths (`git status --porcelain`, which includes untracked files). The gate fails if any path is protected (`AGENTS.md`, Protected paths). Exceptions: a normative task, or a migration task that only removes baseline entries.
+2. List the changed paths (`git status --porcelain`, which includes untracked files) and apply the protected-path check (`AGENTS.md`, Protected paths).
 3. The gate fails if any path is outside the brief's scope limits.
 4. Reassess the tier on the real diff. If it is higher than planned, reclassify. If it is now T3, pause for human approval of the approach.
 
@@ -66,16 +63,11 @@ If `verify` is red or the diff fails a check, classify the failure (§7).
 
 ## 5. Review
 
-Spawn a **new** `reviewer` subagent: never a fork, never a reviewer from an earlier cycle. Pass only:
-- type, tier, task and acceptance criteria;
-- the diff reference (e.g. "uncommitted changes in the working tree", or a branch or commit range);
-- the implementer's declared local decisions.
-
-Never pass the implementer's plan, reasoning or manifest.
+Spawn a **new** `reviewer` subagent: never a fork, never a reviewer from an earlier cycle. Pass only the inputs listed in `review` (Inputs); the diff reference is e.g. "uncommitted changes in the working tree", or a branch or commit range. Never pass the implementer's plan, reasoning or manifest.
 
 ## 6. Triage
 
-For each finding (a successful attack is a finding with basis `evidence`; refuted and inconclusive attacks need no triage; an incomplete `APPROVE` or `CHANGES` is F6; a reviewer's `BLOCKED: decision` is always F4):
+Triage each finding; attacks are not triaged (`review` defines them).
 
 | Situation | Action |
 |---|---|
@@ -87,7 +79,7 @@ For each finding (a successful attack is a finding with basis `evidence`; refute
 | Ambiguity or conflict in the canon | Decision request to the human (F4) |
 | A declared local decision the reviewer considers normative | Decision request, or accept it as local if you confirm it creates no convention |
 
-**Second review** (at most one): a new `reviewer` with fresh context, asked one focused question: "Is finding F valid under rule R?" If the answer is no, the finding is dropped. If the dispute was one of interpretation, record a low-priority clarification request for the rule.
+**Second review** (at most one): a new `reviewer` with fresh context, asked the focused question in `review` (Second review). If the answer is no, the finding is dropped. If the dispute was one of interpretation, record a low-priority clarification request for the rule.
 
 **Manifest comparison:** a rule in the reviewer's manifest that is missing from the implementer's manifest is a routing failure. Propose the routing fix to the human (a normative task). After ratification, retry with a fresh implementer.
 
@@ -96,11 +88,11 @@ For each finding (a successful attack is a finding with basis `evidence`; refute
 | Class | Signal | Action |
 |---|---|---|
 | F1 Mechanical | `verify` red with a clear message | Resume the same implementer with the failure lines |
-| F2 Non-conformance | Valid finding citing a rule | Resume with the IDs. If the same rule fails again, compare manifests: rule not loaded means a routing failure (§6); rule loaded but misread means ambiguity (F4) |
-| F3 Semantic | Concrete bug | Resume with the finding and a failing test. If it repeats: fresh context, possibly F8 |
-| F4 Normative gap | `BLOCKED: decision` (implementer, or reviewer even with attacks missing), ambiguity, doc/code conflict, stale rule | Do not retry. Decision request. Once the human decides a `BLOCKED: decision`, resume the implementation (§8) if the decision changes it, then spawn a new `reviewer` for a full review |
+| F2 Non-conformance | Valid finding citing a rule | Resume with the IDs. If the same rule fails again, compare manifests (§6); a rule loaded but misread is ambiguity (F4) |
+| F3 Semantic | Concrete bug | Resume with the finding and a failing test or a reproduction. If it repeats: fresh context, possibly F8 |
+| F4 Normative gap | `BLOCKED: decision` (implementer or reviewer), ambiguity, doc/code conflict, stale rule | Do not retry. Decision request. Once a `BLOCKED: decision` is decided, resume the implementation (§8) if the decision changes it, then get a new full review |
 | F5 Scope | `ESCALATE: scope`, or real tier higher than planned | Reclassify, split the task, or ask for T3 approval. Then a fresh implementer |
-| F6 Wrong reviewer | Finding without basis, finding dropped, or incomplete full review (`APPROVE` or `CHANGES` with an attack missing for a criterion or a changed behaviour; second reviews record no attacks) | Dismiss; second review only for a real dispute. Incomplete review: discard it and spawn a new `reviewer` (see budget); if it repeats, go to the human |
+| F6 Wrong reviewer | Finding without basis, finding dropped, or incomplete review (see `review`) | Dismiss; second review only for a real dispute. Replace an incomplete review with a new `reviewer` (see budget); if it repeats, go to the human |
 | F7 Environment | Flaky test, build broken outside the diff, tool unavailable | Do not retry the implementation. Report it; it becomes a separate task |
 | F8 Capability | F3 repeated with correct context and a clear rule | One escalation: a fresh `implementer-max`. If it persists, go to the human |
 
@@ -140,10 +132,10 @@ Blocks: <what waits on this>
 ## 10. Done
 
 Declare **ready for merge** only when:
-1. `verify` is green, run by you;
-2. the last full review (not a second review) is complete (an attack for every criterion and changed behaviour, see `review`), and its verdict is `APPROVE`, or `CHANGES` with every blocking finding resolved or dismissed with a reason (a `BLOCKED: decision` review never closes a task);
+1. `verify` is green (§4);
+2. the last full review is complete (see `review`), and its verdict is `APPROVE`, or `CHANGES` with every blocking finding resolved or dismissed with a reason;
 3. no normative decision is pending;
-4. the diff is within scope and touches no protected path outside a normative task;
+4. the diff is within scope and passes the protected-path check;
 5. the final tier matches the flow that was followed.
 
 Final report: what changed; declared local decisions; dismissed findings and why; pending items (the last full review's inconclusive attacks with what is missing to decide, routing fixes, rule clarifications, candidates for promotion to a check). Do not commit or merge unless the human asks; merging follows the repository's policy.

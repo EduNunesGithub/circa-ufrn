@@ -10,7 +10,7 @@ Run it when a diff touches a protected path (normative tasks) and once after ado
 - [ ] IDs are unique across the kernel and every rule file, counting the "Retired" lists. No ID is reused.
 - [ ] Every rule has a Reason, a Validity (`new-code` | `touched-files` | `total`) and an Enforcement (a check name, or `review`).
 - [ ] Every rule file has a non-empty `paths` frontmatter list.
-- [ ] Every check named under Enforcement exists in the project's check configuration, and its message cites the rule ID.
+- [ ] Every check named under Enforcement exists in the project's check configuration, and its message cites the rule ID, unless the rule states that the tool cannot cite it, or states which other rule ID the message cites.
 - [ ] Every rule with a check and a validity other than `total` has a baseline entry in the kernel's baseline table.
 - [ ] Baselines did not grow, unless this diff creates the rule they belong to.
 - [ ] Every exemplar exists, and appears in no baseline and in no "Known legacy" list.
@@ -22,7 +22,7 @@ Run it when a diff touches a protected path (normative tasks) and once after ado
 - [ ] The routing table matches the `paths` frontmatter exactly: every glob of every rule file has a row, and no row points to a missing file or a glob that is no longer declared.
 - [ ] At most 150 lines, and at most 10 global invariants.
 - [ ] The protected paths list matches `.github/CODEOWNERS`.
-- [ ] No unfilled template placeholder is left in any file outside `.agents/skills/*/assets/`. A placeholder is text wrapped in double curly braces, or a TODO marker tagged `template`.
+- [ ] No unfilled template placeholder is left in any protected path (`AGENTS.md`, Protected paths), excluding `.agents/skills/*/assets/` and, until canaries are written, the canary template entry in `evals/canaries.md`. A placeholder is text wrapped in double curly braces, or a TODO marker tagged `template`.
 
 ## Adapters and skills
 
