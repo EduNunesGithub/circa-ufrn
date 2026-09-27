@@ -26,6 +26,31 @@ const SPACING_MESSAGE =
   "R-UI-006: gap and padding use only the semantic spacing tokens (gutter, section, block, group, inset, item, label, control), never numeric steps other than 0 or arbitrary values.";
 const COLOR_MESSAGE =
   "R-UI-007: colors come only from the theme color tokens; arbitrary color values are forbidden.";
+const NATIVE_PRIMITIVE_MESSAGE =
+  "R-COMP-001: use the Base UI (@base-ui/react) component or an existing project component instead of a native <button>, <input>, <select>, <dialog> or <details>; an <input> type with no Base UI equivalent needs a line-level eslint-disable with its reason.";
+const ICON_MESSAGE =
+  "R-COMP-002: icons come only from react-icons/lu (the Lucide set of react-icons).";
+
+const RELATIVE_IMPORT_PATTERN = {
+  group: ["./*", "../*"],
+  message:
+    "R-STYLE-002: import project code through the @/ path alias, not a relative path.",
+};
+const TOKEN_SYNTAX = [
+  {
+    message: SPACING_MESSAGE,
+    selector: `Literal[value=/${RAW_SPACING}/]`,
+  },
+  {
+    message: SPACING_MESSAGE,
+    selector: `TemplateElement[value.raw=/${RAW_SPACING}/]`,
+  },
+  { message: COLOR_MESSAGE, selector: `Literal[value=/${RAW_COLOR}/]` },
+  {
+    message: COLOR_MESSAGE,
+    selector: `TemplateElement[value.raw=/${RAW_COLOR}/]`,
+  },
+];
 
 export default defineConfig([
   ...nextVitals,
@@ -35,15 +60,7 @@ export default defineConfig([
     rules: {
       "no-restricted-imports": [
         "error",
-        {
-          patterns: [
-            {
-              group: ["./*", "../*"],
-              message:
-                "R-STYLE-002: import project code through the @/ path alias, not a relative path.",
-            },
-          ],
-        },
+        { patterns: [RELATIVE_IMPORT_PATTERN] },
       ],
       "react/no-multi-comp": "error",
     },
@@ -111,20 +128,53 @@ export default defineConfig([
   {
     files: ["{app,components,contexts,hooks,lib}/**/*.{ts,tsx}"],
     rules: {
-      "no-restricted-syntax": [
+      "no-restricted-syntax": ["error", ...TOKEN_SYNTAX],
+    },
+  },
+  {
+    files: ["{app,components}/**/*.tsx", "{contexts,lib}/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
         "error",
         {
-          message: SPACING_MESSAGE,
-          selector: `Literal[value=/${RAW_SPACING}/]`,
+          patterns: [
+            RELATIVE_IMPORT_PATTERN,
+            {
+              group: [
+                "@fortawesome/*",
+                "@heroicons/*",
+                "@mui/icons-material",
+                "@mui/icons-material/*",
+                "@phosphor-icons/*",
+                "@radix-ui/react-icons",
+                "@tabler/icons-react",
+                "lucide-react",
+                "react-icons/*",
+                "!react-icons/lib",
+                "!react-icons/lu",
+              ],
+              message: ICON_MESSAGE,
+            },
+            {
+              allowTypeImports: true,
+              group: ["react-icons/lib", "react-icons/lib/*"],
+              message: ICON_MESSAGE,
+            },
+          ],
         },
+      ],
+    },
+  },
+  {
+    files: ["{app,components,contexts}/**/*.tsx"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        ...TOKEN_SYNTAX,
         {
-          message: SPACING_MESSAGE,
-          selector: `TemplateElement[value.raw=/${RAW_SPACING}/]`,
-        },
-        { message: COLOR_MESSAGE, selector: `Literal[value=/${RAW_COLOR}/]` },
-        {
-          message: COLOR_MESSAGE,
-          selector: `TemplateElement[value.raw=/${RAW_COLOR}/]`,
+          message: NATIVE_PRIMITIVE_MESSAGE,
+          selector:
+            "JSXOpeningElement[name.name=/^(button|details|dialog|input|select)$/]",
         },
       ],
     },
