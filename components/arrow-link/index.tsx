@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { IconType } from "react-icons/lib";
 
 import Link from "next/link";
@@ -9,7 +10,7 @@ import { focusRingClassName, type Tone } from "@/lib/control-styles";
 type ArrowLinkProps = {
   href: string;
   icon?: IconType;
-  label: string;
+  label: ReactNode;
   tone?: Tone;
 };
 

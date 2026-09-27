@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { ButtonLink } from "@/components/button-link";
 import { HeaderNav } from "@/components/header/header-nav";
@@ -6,13 +9,16 @@ import { MobileMenu } from "@/components/header/mobile-menu";
 import { Logo } from "@/components/logo";
 import { cn } from "@/lib/cn";
 import { focusRingClassName, type Tone } from "@/lib/control-styles";
-import { headerCta } from "@/lib/navigation";
+import { hasTransparentHeader, headerCta } from "@/lib/navigation";
 
 type HeaderProps = {
   variant?: "solid" | "transparent";
 };
 
-export function Header({ variant = "solid" }: HeaderProps) {
+export function Header({ variant: variantProp }: HeaderProps) {
+  const pathname = usePathname();
+  const variant =
+    variantProp ?? (hasTransparentHeader(pathname) ? "transparent" : "solid");
   const tone: Tone = variant === "transparent" ? "inverse" : "default";
 
   return (

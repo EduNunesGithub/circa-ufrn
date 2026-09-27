@@ -122,6 +122,12 @@ export const menuCta = { href: visit.href, label: "Planeje sua visita" };
 
 export const backToTopHref = "#top";
 
+const transparentHeaderPaths = new Set(["/"]);
+
+export function hasTransparentHeader(pathname: string): boolean {
+  return transparentHeaderPaths.has(pathname);
+}
+
 export function isActivePath(pathname: string, href: string): boolean {
   if (href === "/") {
     return pathname === "/";

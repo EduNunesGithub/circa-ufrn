@@ -1,13 +1,28 @@
 import { cn } from "@/lib/cn";
 
+export type ButtonVariant = "outline" | "solid";
+
 export type Tone = "default" | "inverse";
 
-export function buttonClassName(tone: Tone): string {
+const buttonVariantClassNames: Record<ButtonVariant, Record<Tone, string>> = {
+  outline: {
+    default: "border border-border-strong text-text hover:bg-bg-alt",
+    inverse: "border border-text-inverse text-text-inverse hover:bg-inverse-2",
+  },
+  solid: {
+    default:
+      "bg-primary text-text-inverse hover:bg-primary-hover active:bg-primary-active",
+    inverse: "bg-bg text-primary hover:bg-bg-alt",
+  },
+};
+
+export function buttonClassName(
+  tone: Tone,
+  variant: ButtonVariant = "solid",
+): string {
   return cn(
     "typo-label gap-control px-inset flex h-10 items-center justify-center rounded-sm transition-colors",
-    tone === "inverse"
-      ? "bg-bg text-primary hover:bg-bg-alt"
-      : "bg-primary text-text-inverse hover:bg-primary-hover active:bg-primary-active",
+    buttonVariantClassNames[variant][tone],
     focusRingClassName(tone),
   );
 }

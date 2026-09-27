@@ -1,0 +1,70 @@
+import type { MediaImage } from "@/components/media-frame";
+import type { Copy } from "@/components/responsive-copy";
+import type { TagVariant } from "@/components/tag";
+
+import { ArrowLink } from "@/components/arrow-link";
+import { FeaturedPublication } from "@/components/home-publications/featured-publication";
+import { PublicationRow } from "@/components/home-publications/publication-row";
+import { SectionHeader } from "@/components/section-header";
+import { cn } from "@/lib/cn";
+import {
+  featuredPublication,
+  publications,
+  publicationsContent,
+} from "@/lib/home/publications";
+
+export type FeaturedPublicationData = {
+  date: Copy;
+  excerpt: string;
+  image: MediaImage;
+  link: { href: string; label: string };
+  tag: PublicationTag;
+  title: Copy;
+};
+
+export type PublicationItem = {
+  date: string;
+  showOnMobile: boolean;
+  tag: PublicationTag;
+  title: Copy;
+};
+
+export type PublicationTag = {
+  label: string;
+  variant: TagVariant;
+};
+
+export function HomePublications() {
+  const { link, overline, title } = publicationsContent;
+
+  return (
+    <section aria-labelledby="home-publications-title" className="bg-bg-alt">
+      <div className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col">
+        <SectionHeader
+          link={link}
+          overline={overline}
+          title={title}
+          titleId="home-publications-title"
+        />
+        <div className="gap-block wide:grid wide:grid-cols-2 wide:items-start flex flex-col">
+          <FeaturedPublication {...featuredPublication} />
+          <ul className="flex flex-col">
+            {publications.map((publication) => (
+              <li
+                className={cn(
+                  !publication.showOnMobile && "desktop:block hidden",
+                )}
+                key={publication.date}
+              >
+                <PublicationRow {...publication} />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="desktop:hidden">
+          <ArrowLink href={link.href} label={link.label} />
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,11 +1,29 @@
-import { cn } from "@/lib/cn";
+import { HomeAbout } from "@/components/home-about";
+import { HomeCaatinga } from "@/components/home-caatinga";
+import { HomeCta } from "@/components/home-cta";
+import { HomeHero } from "@/components/home-hero";
+import { HomePartners } from "@/components/home-partners";
+import { HomePeople } from "@/components/home-people";
+import { HomeProcess } from "@/components/home-process";
+import { HomeProjects } from "@/components/home-projects";
+import { HomePublications } from "@/components/home-publications";
+import { HomeResearch } from "@/components/home-research";
+import { HomeResults } from "@/components/home-results";
 
 export default function Home() {
-  const isHighlighted = true;
-
   return (
-    <main className="px-gutter py-section flex min-h-screen items-center justify-center">
-      <h1 className={cn(isHighlighted && "text-secondary")}>App</h1>
+    <main>
+      <HomeHero />
+      <HomeAbout />
+      <HomeCaatinga />
+      <HomeProcess />
+      <HomeResearch />
+      <HomeResults />
+      <HomeProjects />
+      <HomePeople />
+      <HomePublications />
+      <HomePartners />
+      <HomeCta />
     </main>
   );
 }
