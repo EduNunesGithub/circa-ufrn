@@ -51,6 +51,7 @@ const twMerge = extendTailwindMerge({
         "warning-soft",
       ],
       container: ["page", "text"],
+      ease: ["standard"],
       font: ["display", "mono", "sans"],
       radius: ["lg", "md", "sm"],
       shadow: ["floating", "overlay"],

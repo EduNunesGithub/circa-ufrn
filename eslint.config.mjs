@@ -28,9 +28,22 @@ const COLOR_MESSAGE =
   "R-UI-007: colors come only from the theme color tokens; arbitrary color values are forbidden.";
 const NATIVE_PRIMITIVE_MESSAGE =
   "R-COMP-001: use the Base UI (@base-ui/react) component or an existing project component instead of a native <button>, <input>, <select>, <dialog> or <details>; an <input> type with no Base UI equivalent needs a line-level eslint-disable with its reason.";
+const MOTION_IMPORT_MESSAGE =
+  "R-MOTION-001: import Motion only from motion/react; framer-motion and every other motion entry (motion, motion/*) are forbidden.";
+const DURATION_MESSAGE =
+  "R-MOTION-003: durations come only from the scale: duration-250, duration-500, duration-750 or duration-1000.";
+const EASE_MESSAGE =
+  "R-MOTION-004: the only easing curve is ease-standard; other ease-* classes are forbidden.";
 const ICON_MESSAGE =
   "R-COMP-002: icons come only from react-icons/lu (the Lucide set of react-icons).";
 
+const RAW_DURATION = `${CLASS_START}duration-(?!(250|500|750|1000)([\\s!]|$))`;
+const RAW_EASE = `${CLASS_START}ease-(?!standard([\\s!]|$))`;
+
+const MOTION_IMPORT_PATTERNS = [
+  { message: MOTION_IMPORT_MESSAGE, regex: "^framer-motion(/.*)?$" },
+  { message: MOTION_IMPORT_MESSAGE, regex: "^motion(?!/react$)(/.*)?$" },
+];
 const RELATIVE_IMPORT_PATTERN = {
   group: ["./*", "../*"],
   message:
@@ -50,6 +63,16 @@ const TOKEN_SYNTAX = [
     message: COLOR_MESSAGE,
     selector: `TemplateElement[value.raw=/${RAW_COLOR}/]`,
   },
+  { message: DURATION_MESSAGE, selector: `Literal[value=/${RAW_DURATION}/]` },
+  {
+    message: DURATION_MESSAGE,
+    selector: `TemplateElement[value.raw=/${RAW_DURATION}/]`,
+  },
+  { message: EASE_MESSAGE, selector: `Literal[value=/${RAW_EASE}/]` },
+  {
+    message: EASE_MESSAGE,
+    selector: `TemplateElement[value.raw=/${RAW_EASE}/]`,
+  },
 ];
 
 export default defineConfig([
@@ -60,7 +83,7 @@ export default defineConfig([
     rules: {
       "no-restricted-imports": [
         "error",
-        { patterns: [RELATIVE_IMPORT_PATTERN] },
+        { patterns: [RELATIVE_IMPORT_PATTERN, ...MOTION_IMPORT_PATTERNS] },
       ],
       "react/no-multi-comp": "error",
     },
@@ -139,6 +162,7 @@ export default defineConfig([
         {
           patterns: [
             RELATIVE_IMPORT_PATTERN,
+            ...MOTION_IMPORT_PATTERNS,
             {
               group: [
                 "@fortawesome/*",

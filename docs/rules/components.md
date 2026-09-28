@@ -7,7 +7,7 @@ paths:
 ---
 # Components
 
-Adopted dependencies: `@base-ui/react` (R-COMP-001) and `react-icons` (R-COMP-002). Installing them needs no further decision.
+Adopted dependencies: `@base-ui/react` (R-COMP-001) and `react-icons` (R-COMP-002). Installing them needs no further decision. Animation: `motion`, see `docs/rules/motion.md` (R-MOTION-001).
 
 ## R-COMP-001: UI primitives come from Base UI, never from native elements
 Scope: `app/**/*.tsx`, `components/**/*.tsx`, `contexts/**/*.tsx`. When Base UI (`@base-ui/react`, the project's standard component library) provides a primitive for a UI element (for example Button, Input, Checkbox, Select, Dialog, Menu, Tabs, Accordion, Collapsible), use that Base UI component, or a project component in `components/` that wraps it, instead of building it directly with native elements (for example `<button>`, `<input>`, `<select>`, `<dialog>`, `<details>`, `<form>`, `<fieldset>`, `<hr>`, `<progress>`, `<meter>`) or by hand (a hand-built menu, tabs, accordion or popover). A native element is allowed only while Base UI has no equivalent primitive; this currently includes `<textarea>` and `<label>`. A native `<input>` type with no Base UI equivalent (for example `type="file"`, `"hidden"`, `"color"`, `"date"`) is allowed only with a line-level `eslint-disable-next-line no-restricted-syntax -- <reason>` naming the reason. Before building your own implementation of a primitive, check Base UI and `components/`; wrapping a Base UI primitive in a project component is allowed.

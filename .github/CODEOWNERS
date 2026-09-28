@@ -9,6 +9,7 @@
 /CLAUDE.md          @EduNunesGitHub
 /docs/decisions/    @EduNunesGitHub
 /docs/rules/        @EduNunesGitHub
+/eslint-suppressions.json @EduNunesGitHub
 /eslint.config.mjs  @EduNunesGitHub
 /evals/             @EduNunesGitHub
 /lefthook.yml       @EduNunesGitHub

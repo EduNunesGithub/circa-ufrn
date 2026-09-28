@@ -75,6 +75,9 @@
   --aspect-square: 1 / 1;
   --aspect-video: 16 / 9;
 
+  --ease-*: initial;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
   --breakpoint-*: initial;
   --breakpoint-desktop: 45rem;
   --breakpoint-wide: 56.75rem;

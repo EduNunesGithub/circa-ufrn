@@ -68,7 +68,9 @@ Baselines only shrink, except when a new rule is created.
 
 | Check | Baseline (native format of the tool) |
 |---|---|
-| none | none: no baselines (greenfield, every checked rule has validity `total`) |
+| ESLint `no-restricted-syntax` (R-MOTION-003, R-MOTION-004) | `eslint-suppressions.json` (ESLint bulk suppressions; counts the whole rule per file, so it also hides R-UI-006, R-UI-007 and R-COMP-001 hits there) |
+
+`verify` does not show suppressed hits, so reviewers inspect every `no-restricted-syntax` hit in a suppressed file that the diff touches (`npx eslint --stdin --stdin-filename <file> < <file>` shows them). Migrations run `npx eslint . --prune-suppressions`, then `npx prettier --write eslint-suppressions.json`.
 
 ## Commands
 
@@ -107,22 +109,27 @@ Derived from the `paths` frontmatter of each rule file. Keep them in sync (see `
 |---|---|
 | app/** | docs/rules/file-structure.md |
 | app/**/*.tsx | docs/rules/components.md |
+| app/**/*.{css,ts,tsx} | docs/rules/motion.md |
 | app/**/*.{css,ts,tsx} | docs/rules/styling.md |
 | app/**/*.{ts,tsx} | docs/rules/code-style.md |
 | components/** | docs/rules/file-structure.md |
 | components/**/*.tsx | docs/rules/components.md |
 | components/**/*.{ts,tsx} | docs/rules/code-style.md |
+| components/**/*.{ts,tsx} | docs/rules/motion.md |
 | components/**/*.{ts,tsx} | docs/rules/styling.md |
 | contexts/** | docs/rules/file-structure.md |
 | contexts/**/*.{ts,tsx} | docs/rules/code-style.md |
 | contexts/**/*.{ts,tsx} | docs/rules/components.md |
+| contexts/**/*.{ts,tsx} | docs/rules/motion.md |
 | contexts/**/*.{ts,tsx} | docs/rules/styling.md |
 | hooks/** | docs/rules/file-structure.md |
 | hooks/**/*.{ts,tsx} | docs/rules/code-style.md |
+| hooks/**/*.{ts,tsx} | docs/rules/motion.md |
 | hooks/**/*.{ts,tsx} | docs/rules/styling.md |
 | lib/** | docs/rules/file-structure.md |
 | lib/**/*.{ts,tsx} | docs/rules/code-style.md |
 | lib/**/*.{ts,tsx} | docs/rules/components.md |
+| lib/**/*.{ts,tsx} | docs/rules/motion.md |
 | lib/**/*.{ts,tsx} | docs/rules/styling.md |
 
 Type triggers (routing by kind of change, not by path):
