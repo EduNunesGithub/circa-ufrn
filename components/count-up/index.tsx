@@ -50,14 +50,14 @@ export function CountUp({ value }: CountUpProps) {
   if (!countable) return value;
 
   return (
-    <span className="relative inline-block" ref={ref}>
+    <span className="relative inline-flex" ref={ref}>
       <span className="sr-only">{value}</span>
       <span aria-hidden className="motion-safe:invisible">
         {value}
       </span>
       <motion.span
         aria-hidden
-        className="absolute inset-0 whitespace-nowrap motion-reduce:hidden"
+        className="absolute inset-y-0 right-0 whitespace-nowrap motion-reduce:hidden"
       >
         {text}
       </motion.span>
