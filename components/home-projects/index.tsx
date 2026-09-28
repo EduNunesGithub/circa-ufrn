@@ -1,3 +1,4 @@
+import { Entrance } from "@/components/entrance";
 import { ProjectsCarousel } from "@/components/home-projects/projects-carousel";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeader } from "@/components/section-header";
@@ -11,7 +12,10 @@ export function HomeProjects() {
       aria-labelledby="home-projects-title"
       className="bg-inverse overflow-hidden"
     >
-      <div className="max-w-page px-gutter py-section mx-auto">
+      <Entrance
+        className="max-w-page px-gutter py-section mx-auto"
+        entrance="rise"
+      >
         <ProjectsCarousel
           header={
             <SectionHeader
@@ -29,7 +33,7 @@ export function HomeProjects() {
             <ProjectCard {...project} key={project.title} tone="inverse" />
           ))}
         </ProjectsCarousel>
-      </div>
+      </Entrance>
     </section>
   );
 }

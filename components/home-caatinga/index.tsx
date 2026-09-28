@@ -1,6 +1,7 @@
 import type { MediaImage } from "@/components/media-frame";
 import type { Copy } from "@/components/responsive-copy";
 
+import { Entrance } from "@/components/entrance";
 import { MediaFrame } from "@/components/media-frame";
 import { Metric } from "@/components/metric";
 import { ResponsiveCopy } from "@/components/responsive-copy";
@@ -20,8 +21,14 @@ export function HomeCaatinga() {
   const { description, overline, title } = caatingaContent;
 
   return (
-    <section aria-labelledby="home-caatinga-title" className="bg-inverse">
-      <div className="gap-block max-w-page px-gutter py-section wide:grid wide:grid-cols-12 mx-auto flex flex-col">
+    <section
+      aria-labelledby="home-caatinga-title"
+      className="bg-inverse overflow-hidden"
+    >
+      <Entrance
+        className="gap-block max-w-page px-gutter py-section wide:grid wide:grid-cols-12 mx-auto flex flex-col"
+        entrance="settle"
+      >
         <div className="gap-block wide:col-span-5 flex min-w-0 flex-col">
           <SectionHeader
             description={description}
@@ -54,7 +61,7 @@ export function HomeCaatinga() {
             </li>
           ))}
         </ul>
-      </div>
+      </Entrance>
     </section>
   );
 }

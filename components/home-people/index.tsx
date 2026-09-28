@@ -1,4 +1,5 @@
 import { ArrowLink } from "@/components/arrow-link";
+import { Entrance } from "@/components/entrance";
 import { PeopleMosaic } from "@/components/home-people/people-mosaic";
 import { Quote } from "@/components/quote";
 import { SectionHeader } from "@/components/section-header";
@@ -9,7 +10,10 @@ export function HomePeople() {
 
   return (
     <section aria-labelledby="home-people-title">
-      <div className="gap-block max-w-page px-gutter py-section wide:grid wide:grid-cols-3 mx-auto flex flex-col">
+      <Entrance
+        className="gap-block max-w-page px-gutter py-section wide:grid wide:grid-cols-3 mx-auto flex flex-col"
+        entrance="slide"
+      >
         <div className="gap-block wide:flex wide:min-w-0 wide:flex-col contents">
           <div className="order-1">
             <SectionHeader
@@ -29,7 +33,7 @@ export function HomePeople() {
         <div className="wide:col-span-2 wide:min-w-0 order-2">
           <PeopleMosaic />
         </div>
-      </div>
+      </Entrance>
     </section>
   );
 }

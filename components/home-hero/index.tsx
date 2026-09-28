@@ -1,6 +1,7 @@
 import type { MediaImage } from "@/components/media-frame";
 
 import { ButtonLink } from "@/components/button-link";
+import { Entrance } from "@/components/entrance";
 import { HeroCarousel } from "@/components/home-hero/hero-carousel";
 import { Overline } from "@/components/overline";
 import { type Copy, ResponsiveCopy } from "@/components/responsive-copy";
@@ -16,9 +17,12 @@ export function HomeHero() {
   const { lead, overline, primaryAction, secondaryAction, title } = heroContent;
 
   return (
-    <section
+    <Entrance
       aria-labelledby="home-hero-title"
+      as="section"
       className="bg-inverse relative isolate flex min-h-170 flex-col justify-end overflow-hidden"
+      entrance="reveal"
+      hero
     >
       <HeroCarousel slides={heroSlides}>
         <div className="gap-group flex max-w-190 min-w-0 flex-col">
@@ -48,6 +52,6 @@ export function HomeHero() {
           </div>
         </div>
       </HeroCarousel>
-    </section>
+    </Entrance>
   );
 }

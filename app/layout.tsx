@@ -10,6 +10,7 @@ import {
 import "@/app/globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { MotionProvider } from "@/components/motion-provider";
 import { cn } from "@/lib/cn";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -49,9 +50,11 @@ export default function RootLayout({
       lang="pt-BR"
     >
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <Header />
+          {children}
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

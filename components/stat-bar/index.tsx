@@ -2,6 +2,7 @@ import { Meter } from "@base-ui/react/meter";
 
 import type { Copy } from "@/components/responsive-copy";
 
+import { GrowBar } from "@/components/grow-bar";
 import { ResponsiveCopy } from "@/components/responsive-copy";
 import { cn } from "@/lib/cn";
 
@@ -33,9 +34,11 @@ export function StatBar({ label, tone, value }: StatBarData) {
         <Meter.Value className="typo-meta text-text shrink-0" />
       </div>
       <Meter.Track className="bg-bg-alt h-2 overflow-hidden rounded-sm">
-        <Meter.Indicator
-          className={cn("h-full rounded-sm", indicatorClassNames[tone])}
-        />
+        <Meter.Indicator className="h-full">
+          <GrowBar
+            className={cn("h-full rounded-sm", indicatorClassNames[tone])}
+          />
+        </Meter.Indicator>
       </Meter.Track>
     </Meter.Root>
   );

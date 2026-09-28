@@ -3,6 +3,8 @@ import { Overline } from "@/components/overline";
 import { PartnerBadge } from "@/components/partner-badge";
 import { PlaceholderBadge } from "@/components/placeholder-badge";
 import { ResponsiveCopy } from "@/components/responsive-copy";
+import { Stagger } from "@/components/stagger";
+import { StaggerItem } from "@/components/stagger-item";
 import { homePartners, partnersContent } from "@/lib/home/partners";
 
 export function HomePartners() {
@@ -18,17 +20,17 @@ export function HomePartners() {
           </h2>
         </div>
         <div className="gap-item flex min-w-0 flex-1 flex-col">
-          <ul className="gap-item desktop:grid-cols-3 grid grid-cols-2">
+          <Stagger className="gap-item desktop:grid-cols-3 grid grid-cols-2">
             {homePartners.map((partner) => (
-              <li key={partner.name}>
+              <StaggerItem key={partner.name}>
                 <PartnerBadge
                   icon={partner.icon}
                   name={partner.name}
                   variant="tile"
                 />
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
           <div className="gap-group flex flex-wrap items-center justify-between">
             <PlaceholderBadge label={placeholder} />
             <ArrowLink

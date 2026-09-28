@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import Image from "next/image";
 
+import { MediaAppear } from "@/components/media-appear";
 import { cn } from "@/lib/cn";
 
 export type MediaImage = {
@@ -10,6 +11,7 @@ export type MediaImage = {
 };
 
 type MediaFrameProps = {
+  appear?: boolean;
   children?: ReactNode;
   className?: string;
   image: MediaImage;
@@ -18,22 +20,27 @@ type MediaFrameProps = {
 };
 
 export function MediaFrame({
+  appear = false,
   children,
   className,
   image,
   preload = false,
   sizes,
 }: MediaFrameProps) {
+  const picture = (
+    <Image
+      alt={image.alt}
+      className="object-cover"
+      fill
+      preload={preload}
+      sizes={sizes}
+      src={image.src}
+    />
+  );
+
   return (
     <div className={cn("relative overflow-hidden", className)}>
-      <Image
-        alt={image.alt}
-        className="object-cover"
-        fill
-        preload={preload}
-        sizes={sizes}
-        src={image.src}
-      />
+      {appear ? <MediaAppear>{picture}</MediaAppear> : picture}
       {children}
     </div>
   );

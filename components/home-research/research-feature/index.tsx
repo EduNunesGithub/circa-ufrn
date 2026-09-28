@@ -18,6 +18,7 @@ export function ResearchFeature({
   return (
     <article className="gap-item p-inset wide:h-full relative isolate flex h-100 flex-col justify-end overflow-hidden rounded-sm">
       <MediaFrame
+        appear
         className="absolute inset-0 -z-10"
         image={image}
         sizes="(min-width: 56.75rem) 58vw, 100vw"

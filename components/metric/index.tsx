@@ -1,6 +1,7 @@
 import type { Copy } from "@/components/responsive-copy";
 import type { Tone } from "@/lib/control-styles";
 
+import { CountUp } from "@/components/count-up";
 import { PlaceholderBadge } from "@/components/placeholder-badge";
 import { ResponsiveCopy } from "@/components/responsive-copy";
 import { cn } from "@/lib/cn";
@@ -38,7 +39,9 @@ export function Metric({
       )}
     >
       <p className="gap-label flex flex-wrap items-baseline">
-        <span className={cn("typo-display", figureColor)}>{value}</span>
+        <span className={cn("typo-display", figureColor)}>
+          <CountUp value={value} />
+        </span>
         {unit && <span className={cn("typo-unit", figureColor)}>{unit}</span>}
       </p>
       <p

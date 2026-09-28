@@ -10,11 +10,13 @@ export type PhotoTileData = {
 };
 
 type PhotoTileProps = {
+  appear?: boolean;
   className?: string;
   sizes: string;
 } & PhotoTileData;
 
 export function PhotoTile({
+  appear = false,
   caption,
   className,
   image,
@@ -28,6 +30,7 @@ export function PhotoTile({
       )}
     >
       <MediaFrame
+        appear={appear}
         className="absolute inset-0 -z-10"
         image={image}
         sizes={sizes}

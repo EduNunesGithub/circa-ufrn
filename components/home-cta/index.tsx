@@ -2,6 +2,7 @@ import { LuMail } from "react-icons/lu";
 
 import { ButtonLink } from "@/components/button-link";
 import { CtaBand } from "@/components/cta-band";
+import { Entrance } from "@/components/entrance";
 import { ctaContent } from "@/lib/home/cta";
 
 export function HomeCta() {
@@ -10,7 +11,10 @@ export function HomeCta() {
 
   return (
     <section aria-labelledby="home-cta-title">
-      <div className="max-w-page px-gutter pb-section mx-auto">
+      <Entrance
+        className="max-w-page px-gutter pb-section mx-auto"
+        entrance="rise"
+      >
         <CtaBand
           actions={
             <>
@@ -34,7 +38,7 @@ export function HomeCta() {
           title={title}
           titleId="home-cta-title"
         />
-      </div>
+      </Entrance>
     </section>
   );
 }

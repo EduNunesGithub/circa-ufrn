@@ -2,6 +2,7 @@ import type { MediaImage } from "@/components/media-frame";
 import type { Copy } from "@/components/responsive-copy";
 
 import { ArrowLink } from "@/components/arrow-link";
+import { Entrance } from "@/components/entrance";
 import { ProcessCarousel } from "@/components/home-process/process-carousel";
 import { ProcessStep } from "@/components/home-process/process-step";
 import { SectionHeader } from "@/components/section-header";
@@ -23,7 +24,10 @@ export function HomeProcess() {
       aria-labelledby="home-process-title"
       className="bg-bg-alt overflow-hidden"
     >
-      <div className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col">
+      <Entrance
+        className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col"
+        entrance="rise"
+      >
         <SectionHeader
           description={description}
           link={{ href: link.href, label: link.label.full }}
@@ -47,7 +51,7 @@ export function HomeProcess() {
             />
           ))}
         </ProcessCarousel>
-      </div>
+      </Entrance>
     </section>
   );
 }

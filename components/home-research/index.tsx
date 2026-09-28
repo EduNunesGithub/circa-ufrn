@@ -1,9 +1,12 @@
 import type { MediaImage } from "@/components/media-frame";
 import type { Copy } from "@/components/responsive-copy";
 
+import { Entrance } from "@/components/entrance";
 import { ResearchFeature } from "@/components/home-research/research-feature";
 import { ResearchLineRow } from "@/components/home-research/research-line-row";
 import { SectionHeader } from "@/components/section-header";
+import { Stagger } from "@/components/stagger";
+import { StaggerItem } from "@/components/stagger-item";
 import {
   featuredResearchLine,
   researchContent,
@@ -22,7 +25,10 @@ export function HomeResearch() {
 
   return (
     <section aria-labelledby="home-research-title">
-      <div className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col">
+      <Entrance
+        className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col"
+        entrance="slide"
+      >
         <SectionHeader
           link={{ href, label: link }}
           overline={overline}
@@ -33,15 +39,15 @@ export function HomeResearch() {
           <div className="wide:col-span-7">
             <ResearchFeature {...featuredResearchLine} href={href} />
           </div>
-          <ul className="border-border wide:col-span-5 wide:justify-between flex flex-col border-b">
+          <Stagger className="border-border wide:col-span-5 wide:justify-between flex flex-col border-b">
             {researchLines.map((line) => (
-              <li key={line.number}>
+              <StaggerItem key={line.number}>
                 <ResearchLineRow {...line} href={href} />
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
         </div>
-      </div>
+      </Entrance>
     </section>
   );
 }
