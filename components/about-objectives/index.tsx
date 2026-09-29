@@ -15,7 +15,7 @@ export function AboutObjectives() {
       className="bg-bg-alt overflow-hidden"
     >
       <Entrance
-        className="gap-block max-w-page px-gutter py-section wide:grid wide:grid-cols-3 mx-auto flex flex-col"
+        className="gap-block max-w-page px-gutter py-section wide:grid wide:grid-cols-3 wide:items-start mx-auto flex flex-col"
         entrance="settle"
       >
         <SectionHeader

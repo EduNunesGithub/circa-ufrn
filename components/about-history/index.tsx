@@ -1,5 +1,6 @@
 import type { Copy } from "@/components/responsive-copy";
 
+import { HistoryCarousel } from "@/components/about-history/history-carousel";
 import { MilestoneItem } from "@/components/about-history/milestone-item";
 import { Entrance } from "@/components/entrance";
 import { Figure } from "@/components/figure";
@@ -8,8 +9,6 @@ import { SectionHeader } from "@/components/section-header";
 import { Stagger } from "@/components/stagger";
 import { StaggerItem } from "@/components/stagger-item";
 import { historyContent, historyPhotos, milestones } from "@/lib/about/history";
-import { cn } from "@/lib/cn";
-import { focusRingClassName } from "@/lib/control-styles";
 
 export type Milestone = {
   highlight?: boolean;
@@ -23,7 +22,7 @@ export function AboutHistory() {
     historyContent;
 
   return (
-    <section aria-labelledby="about-history-title">
+    <section aria-labelledby="about-history-title" className="overflow-hidden">
       <Entrance
         className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col"
         entrance="rise"
@@ -50,27 +49,16 @@ export function AboutHistory() {
             </StaggerItem>
           ))}
         </Stagger>
-        <div
-          aria-label={photosLabel}
-          className={cn(
-            "max-desktop:-mx-gutter max-desktop:px-gutter overflow-x-auto",
-            focusRingClassName("default"),
-          )}
-          role="region"
-          tabIndex={0}
-        >
-          <ul className="gap-item desktop:grid desktop:grid-cols-3 desktop:gap-block flex">
-            {historyPhotos.map((photo) => (
-              <li className="desktop:w-auto w-68 shrink-0" key={photo.number}>
-                <Figure
-                  {...photo}
-                  mediaClassName="desktop:h-70 h-50 rounded-sm"
-                  sizes="(min-width: 45rem) 33vw, 272px"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+        <HistoryCarousel label={photosLabel} total={historyPhotos.length}>
+          {historyPhotos.map((photo) => (
+            <Figure
+              {...photo}
+              key={photo.number}
+              mediaClassName="desktop:h-70 h-50 rounded-sm"
+              sizes="(min-width: 45rem) 40vw, 272px"
+            />
+          ))}
+        </HistoryCarousel>
       </Entrance>
     </section>
   );

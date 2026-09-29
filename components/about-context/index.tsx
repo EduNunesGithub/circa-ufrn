@@ -28,7 +28,7 @@ export function AboutContext() {
           <p className="text-text-2 order-4">
             <ResponsiveCopy copy={secondParagraph} />
           </p>
-          <div className="desktop:block order-5 hidden">
+          <div className="order-5">
             <ArrowLink href={link.href} label={link.label} />
           </div>
         </div>

@@ -33,7 +33,7 @@ export function AboutHero() {
     >
       <div className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col">
         <Breadcrumb items={aboutBreadcrumb} />
-        <div className="gap-block wide:grid wide:grid-cols-2 wide:items-end flex flex-col">
+        <div className="gap-block wide:grid wide:grid-cols-2 wide:items-start flex flex-col">
           <div className="gap-group flex flex-col">
             <Overline>{overline}</Overline>
             <h1 className="typo-display text-text" id="about-hero-title">
@@ -57,7 +57,7 @@ export function AboutHero() {
           {aboutFacts.map(({ label, placeholder, value }) => (
             <StaggerItem
               as="div"
-              className="border-border gap-label py-inset wide:border-b-0 wide:border-l wide:pl-inset wide:first:border-l-0 wide:first:pl-0 flex flex-col border-b"
+              className="border-border gap-label py-inset wide:border-b-0 wide:border-l wide:px-inset wide:first:border-l-0 wide:first:pl-0 wide:last:pr-0 flex flex-col border-b"
               key={label}
             >
               <dt className="gap-control flex min-h-6 flex-wrap items-center justify-between">
