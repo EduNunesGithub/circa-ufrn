@@ -6,19 +6,19 @@ import { Carousel } from "@/components/carousel";
 import { CarouselControls } from "@/components/carousel-controls";
 import { useCarousel } from "@/hooks/use-carousel";
 
-type HistoryCarouselProps = {
+type PhotoCarouselProps = {
   children: ReactNode;
+  id: string;
   label: string;
   total: number;
 };
 
-const carouselId = "about-history-photos";
-
-export function HistoryCarousel({
+export function PhotoCarousel({
   children,
+  id,
   label,
   total,
-}: HistoryCarouselProps) {
+}: PhotoCarouselProps) {
   const controller = useCarousel(total);
 
   return (
@@ -27,14 +27,14 @@ export function HistoryCarousel({
         bleed
         className="-outline-offset-4"
         controller={controller}
-        id={carouselId}
+        id={id}
         label={label}
         slideClassName="w-68 desktop:w-2/5"
       >
         {children}
       </Carousel>
       <div className="flex justify-end">
-        <CarouselControls controller={controller} controlsId={carouselId} />
+        <CarouselControls controller={controller} controlsId={id} />
       </div>
     </div>
   );

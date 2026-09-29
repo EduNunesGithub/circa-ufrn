@@ -60,20 +60,20 @@ export const resultsMetrics: MetricData[] = [
 
 export const survivalBars: StatBarData[] = [
   {
+    color: "primary",
     label: {
       full: "Raízes alongadas (tubo de 1 m)",
       short: "Raízes alongadas",
     },
-    tone: "primary",
     value: 72,
   },
   {
+    color: "sage",
     label: {
       full: "Muda convencional (saco plástico)",
       short: "Convencional",
     },
-    tone: "sage",
     value: 38,
   },
-  { label: "Semeadura direta", tone: "muted", value: 21 },
+  { color: "muted", label: "Semeadura direta", value: 21 },
 ];

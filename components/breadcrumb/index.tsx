@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { LuChevronRight } from "react-icons/lu";
 
 import { cn } from "@/lib/cn";
-import { focusRingClassName } from "@/lib/control-styles";
+import { focusRingClassName, type Tone } from "@/lib/control-styles";
 
 export type BreadcrumbItem = {
   href?: string;
@@ -12,9 +12,12 @@ export type BreadcrumbItem = {
 
 type BreadcrumbProps = {
   items: BreadcrumbItem[];
+  tone?: Tone;
 };
 
-export function Breadcrumb({ items }: BreadcrumbProps) {
+export function Breadcrumb({ items, tone = "default" }: BreadcrumbProps) {
+  const inverse = tone === "inverse";
+
   return (
     <nav aria-label="Trilha de navegação">
       <ol className="gap-control flex flex-wrap items-center">
@@ -22,22 +25,34 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
           <Fragment key={label}>
             {index > 0 && (
               <li aria-hidden className="flex">
-                <LuChevronRight className="text-text-disabled size-3" />
+                <LuChevronRight
+                  className={cn(
+                    "size-3",
+                    inverse ? "text-text-inverse-2" : "text-text-disabled",
+                  )}
+                />
               </li>
             )}
             <li>
               {href ? (
                 <Link
                   className={cn(
-                    "typo-small text-text-muted rounded-sm hover:underline",
-                    focusRingClassName("default"),
+                    "typo-small rounded-sm hover:underline",
+                    inverse ? "text-text-inverse-2" : "text-text-muted",
+                    focusRingClassName(tone),
                   )}
                   href={href}
                 >
                   {label}
                 </Link>
               ) : (
-                <span aria-current="page" className="typo-caption-medium">
+                <span
+                  aria-current="page"
+                  className={cn(
+                    "typo-caption-medium",
+                    inverse && "text-text-inverse",
+                  )}
+                >
                   {label}
                 </span>
               )}

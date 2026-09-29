@@ -5,6 +5,8 @@ import type {
   Variants,
 } from "motion/react";
 
+export type BarAxis = "x" | "y";
+
 export type EntranceName = "reveal" | "rise" | "settle" | "slide";
 
 export const DURATION = {
@@ -72,9 +74,15 @@ export const MEDIA_VARIANTS: Variants = {
   visible: { opacity: 1, scale: 1 },
 };
 
-export const BAR_VARIANTS: Variants = {
-  hidden: { scaleX: 0 },
-  visible: { scaleX: 1 },
+export const BAR_VARIANTS: Record<BarAxis, Variants> = {
+  x: {
+    hidden: { scaleX: 0 },
+    visible: { scaleX: 1 },
+  },
+  y: {
+    hidden: { scaleY: 0 },
+    visible: { scaleY: 1 },
+  },
 };
 
 export function motionTransition(

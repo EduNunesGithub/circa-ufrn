@@ -122,7 +122,7 @@ export const menuCta = { href: visit.href, label: "Planeje sua visita" };
 
 export const backToTopHref = "#top";
 
-const transparentHeaderPaths = new Set(["/"]);
+const transparentHeaderPaths = new Set(["/", caatinga.href]);
 
 export function hasTransparentHeader(pathname: string): boolean {
   return transparentHeaderPaths.has(pathname);

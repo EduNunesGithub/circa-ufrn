@@ -1,4 +1,5 @@
 import type { Copy } from "@/components/responsive-copy";
+import type { Tone } from "@/lib/control-styles";
 
 import { MediaFrame, type MediaImage } from "@/components/media-frame";
 import { ResponsiveCopy } from "@/components/responsive-copy";
@@ -12,14 +13,17 @@ export type FigureData = {
 };
 
 type FigureProps = {
+  captionOnMobile?: boolean;
   className?: string;
   mediaClassName: string;
   preload?: boolean;
   sizes: string;
+  tone?: Tone;
 } & FigureData;
 
 export function Figure({
   caption,
+  captionOnMobile = true,
   className,
   credit,
   image,
@@ -27,7 +31,10 @@ export function Figure({
   number,
   preload = false,
   sizes,
+  tone = "default",
 }: FigureProps) {
+  const inverse = tone === "inverse";
+
   return (
     <figure className={cn("gap-label flex flex-col", className)}>
       <MediaFrame
@@ -36,13 +43,35 @@ export function Figure({
         preload={preload}
         sizes={sizes}
       />
-      <figcaption className="gap-label flex">
-        <span className="typo-overline text-secondary shrink-0">{number}</span>
-        <span className="typo-caption text-text-2 min-w-0 flex-1">
+      <figcaption
+        className={cn(
+          "gap-label flex",
+          !captionOnMobile && "desktop:flex hidden",
+        )}
+      >
+        <span
+          className={cn(
+            "typo-overline shrink-0",
+            inverse ? "text-accent" : "text-secondary",
+          )}
+        >
+          {number}
+        </span>
+        <span
+          className={cn(
+            "typo-caption min-w-0 flex-1",
+            inverse ? "text-text-inverse-2" : "text-text-2",
+          )}
+        >
           <ResponsiveCopy copy={caption} />
         </span>
         {credit && (
-          <span className="typo-meta text-text-muted desktop:block hidden shrink-0">
+          <span
+            className={cn(
+              "typo-meta desktop:block hidden shrink-0",
+              inverse ? "text-text-inverse-2" : "text-text-muted",
+            )}
+          >
             {credit}
           </span>
         )}

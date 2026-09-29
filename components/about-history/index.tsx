@@ -1,9 +1,9 @@
 import type { Copy } from "@/components/responsive-copy";
 
-import { HistoryCarousel } from "@/components/about-history/history-carousel";
 import { MilestoneItem } from "@/components/about-history/milestone-item";
 import { Entrance } from "@/components/entrance";
 import { Figure } from "@/components/figure";
+import { PhotoCarousel } from "@/components/photo-carousel";
 import { PlaceholderBadge } from "@/components/placeholder-badge";
 import { SectionHeader } from "@/components/section-header";
 import { Stagger } from "@/components/stagger";
@@ -49,7 +49,11 @@ export function AboutHistory() {
             </StaggerItem>
           ))}
         </Stagger>
-        <HistoryCarousel label={photosLabel} total={historyPhotos.length}>
+        <PhotoCarousel
+          id="about-history-photos"
+          label={photosLabel}
+          total={historyPhotos.length}
+        >
           {historyPhotos.map((photo) => (
             <Figure
               {...photo}
@@ -58,7 +62,7 @@ export function AboutHistory() {
               sizes="(min-width: 45rem) 40vw, 272px"
             />
           ))}
-        </HistoryCarousel>
+        </PhotoCarousel>
       </Entrance>
     </section>
   );

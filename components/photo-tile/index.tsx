@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import type { Copy } from "@/components/responsive-copy";
 
 import { MediaFrame, type MediaImage } from "@/components/media-frame";
@@ -12,12 +14,17 @@ export type PhotoTileData = {
 type PhotoTileProps = {
   appear?: boolean;
   className?: string;
+  image: MediaImage;
   sizes: string;
-} & PhotoTileData;
+} & (
+  | { caption: Copy; children?: undefined }
+  | { caption?: undefined; children: ReactNode }
+);
 
 export function PhotoTile({
   appear = false,
   caption,
+  children,
   className,
   image,
   sizes,
@@ -40,8 +47,12 @@ export function PhotoTile({
           className="to-inverse/85 absolute inset-0 bg-linear-to-b from-transparent from-55%"
         />
       </MediaFrame>
-      <figcaption className="typo-caption-strong text-text-inverse">
-        <ResponsiveCopy copy={caption} />
+      <figcaption
+        className={
+          children ? "flex flex-col" : "typo-caption-strong text-text-inverse"
+        }
+      >
+        {children ?? (caption && <ResponsiveCopy copy={caption} />)}
       </figcaption>
     </figure>
   );
