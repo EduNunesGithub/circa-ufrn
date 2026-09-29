@@ -1,7 +1,9 @@
 import { LuInfo } from "react-icons/lu";
 
+import { type Copy, ResponsiveCopy } from "@/components/responsive-copy";
+
 type PlaceholderBadgeProps = {
-  label?: string;
+  label?: Copy;
 };
 
 export function PlaceholderBadge({
@@ -10,7 +12,7 @@ export function PlaceholderBadge({
   return (
     <span className="gap-control px-control border-accent bg-accent-soft text-warning typo-meta flex min-h-6 w-fit max-w-full items-center rounded-sm border">
       <LuInfo aria-hidden className="size-3 shrink-0" />
-      {label}
+      <ResponsiveCopy copy={label} />
     </span>
   );
 }

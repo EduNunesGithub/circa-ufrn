@@ -16,7 +16,7 @@ import {
 } from "@/lib/motion";
 
 type StaggerProps = {
-  as?: "div" | "ol" | "ul";
+  as?: "div" | "dl" | "ol" | "ul";
   children: ReactNode;
   className?: string;
 };

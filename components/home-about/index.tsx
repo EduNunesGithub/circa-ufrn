@@ -2,7 +2,7 @@ import type { IconType } from "react-icons/lib";
 
 import { ArrowLink } from "@/components/arrow-link";
 import { Entrance } from "@/components/entrance";
-import { AboutFigure } from "@/components/home-about/about-figure";
+import { Figure } from "@/components/figure";
 import { AboutPillar } from "@/components/home-about/about-pillar";
 import { Overline } from "@/components/overline";
 import { type Copy, ResponsiveCopy } from "@/components/responsive-copy";
@@ -27,11 +27,11 @@ export function HomeAbout() {
       >
         <div className="gap-label wide:flex wide:w-78 wide:shrink-0 wide:flex-col contents">
           <Overline className="wide:block hidden">{overline}</Overline>
-          <AboutFigure
-            caption={figure.caption}
+          <Figure
+            {...figure}
             className="wide:order-none order-3"
-            image={figure.image}
-            number={figure.number}
+            mediaClassName="wide:h-52 h-56 rounded-sm"
+            sizes="(min-width: 56.75rem) 312px, 100vw"
           />
         </div>
         <div className="gap-block wide:flex wide:min-w-0 wide:flex-1 wide:flex-col contents">
