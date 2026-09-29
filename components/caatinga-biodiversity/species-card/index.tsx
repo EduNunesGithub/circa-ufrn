@@ -30,7 +30,7 @@ export function SpeciesCard({
         {number} · {category}
       </span>
       <h3 className="text-text-inverse">{name}</h3>
-      <span className="typo-small text-text-inverse-2 italic">
+      <span className="typo-small-italic text-text-inverse-2">
         {scientificName}
       </span>
     </PhotoTile>

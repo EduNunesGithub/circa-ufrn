@@ -6,7 +6,7 @@ export function FooterBrand() {
     <div className="gap-group desktop:w-106 flex shrink-0 flex-col">
       <Logo tone="inverse" />
       <p className="text-text-inverse-2">{siteInfo.about}</p>
-      <address className="typo-small text-text-inverse-2 desktop:block hidden not-italic">
+      <address className="typo-small text-text-inverse-2 desktop:block hidden">
         {siteInfo.addressLines[0]}
         <br />
         {siteInfo.addressLines[1]}

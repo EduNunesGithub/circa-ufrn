@@ -27,9 +27,9 @@ Space between sibling elements uses `gap`. Padding is used only for a container'
 - Enforcement: review.
 
 ## R-UI-003: Typography is defined only in `app/globals.css`
-Font family, font size, font weight and tracking are defined only in `app/globals.css`: base styles for elements (`h1`, `h2`, `p`, …) inside `@layer base` with `@apply` (for example `@apply font-bold text-2xl;`, no colon), plus named typography classes defined there for special cases. Named typography classes use the `typo-*` prefix (for example `typo-caption`, `typo-label`, `typo-display`), never a Tailwind utility prefix such as `text-*`; they are project classes, not the `@tailwindcss/typography` plugin, and each is defined with Tailwind's `@utility` directive, never as a plain CSS class. Components and pages do not apply font-family (`font-sans`, `font-mono`, …), font-size (`text-<size>`), font-weight (`font-bold`, …) or tracking (`tracking-*`) utilities directly.
+Font family, font size, font weight, font style and tracking are defined only in `app/globals.css`: base styles for elements (`h1`, `h2`, `p`, …) inside `@layer base` with `@apply` (for example `@apply font-bold text-2xl;`, no colon), plus named typography classes defined there for special cases. Named typography classes use the `typo-*` prefix (for example `typo-caption`, `typo-label`, `typo-display`), never a Tailwind utility prefix such as `text-*`; they are project classes, not the `@tailwindcss/typography` plugin, and each is defined with Tailwind's `@utility` directive, never as a plain CSS class. Components and pages do not apply font-family (`font-sans`, `font-mono`, …), font-size (`text-<size>`), font-weight (`font-bold`, …), font-style (`italic`, `not-italic`) or tracking (`tracking-*`) utilities directly.
 - Yes: `@utility typo-caption { @apply text-xs font-normal; }`
-- No: `.typo-caption { @apply text-xs font-normal; }`
+- No: `.typo-caption { @apply text-xs font-normal; }`; `<span className="typo-small italic">`
 - Reason: one source of typographic truth; text looks the same everywhere.
 - Validity: total. Legacy: none.
 - Enforcement: review.

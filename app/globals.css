@@ -136,6 +136,10 @@
   p {
     @apply text-sm font-normal;
   }
+
+  address {
+    @apply not-italic;
+  }
 }
 
 @utility typo-caption {
@@ -188,6 +192,10 @@
 
 @utility typo-small {
   @apply font-sans text-xs font-normal;
+}
+
+@utility typo-small-italic {
+  @apply font-sans text-xs font-normal italic;
 }
 
 @utility typo-card-title {
