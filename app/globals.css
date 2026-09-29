@@ -206,6 +206,10 @@
   @apply font-display desktop:text-3xl text-2xl font-normal;
 }
 
+@utility typo-stat {
+  @apply font-display desktop:text-5xl text-3xl font-normal;
+}
+
 @utility typo-title {
   @apply font-display text-2xl font-normal;
 }

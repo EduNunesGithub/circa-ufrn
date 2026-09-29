@@ -4,14 +4,14 @@ import type { Tone } from "@/lib/control-styles";
 
 import { MediaFrame } from "@/components/media-frame";
 import { ResponsiveCopy } from "@/components/responsive-copy";
-import { type ProjectStatus, StatusBadge } from "@/components/status-badge";
+import { type BadgeStatus, StatusBadge } from "@/components/status-badge";
 import { cn } from "@/lib/cn";
 
 export type ProjectCardData = {
   description: string;
   image: MediaImage;
   location: Copy;
-  status: ProjectStatus;
+  status: BadgeStatus;
   title: string;
 };
 

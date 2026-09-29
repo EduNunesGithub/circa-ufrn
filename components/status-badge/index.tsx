@@ -1,15 +1,18 @@
 import { cn } from "@/lib/cn";
 
-export type ProjectStatus = "active" | "done" | "planned";
+export type BadgeStatus =
+  "active" | "done" | "planned" | "testing" | "validated";
 
 type StatusBadgeProps = {
-  status: ProjectStatus;
+  status: BadgeStatus;
 };
 
-const statuses: Record<ProjectStatus, { className: string; label: string }> = {
+const statuses: Record<BadgeStatus, { className: string; label: string }> = {
   active: { className: "bg-success-soft text-success", label: "Em andamento" },
   done: { className: "bg-bg-alt text-text-2", label: "Concluído" },
   planned: { className: "bg-warning-soft text-warning", label: "Planejado" },
+  testing: { className: "bg-warning-soft text-warning", label: "Em teste" },
+  validated: { className: "bg-success-soft text-success", label: "Validado" },
 };
 
 export function StatusBadge({ status }: StatusBadgeProps) {

@@ -1,6 +1,12 @@
 import { cn } from "@/lib/cn";
 
-export type TagVariant = "article" | "education" | "news" | "report" | "video";
+export type PublicationTag = {
+  label: string;
+  variant: TagVariant;
+};
+
+export type TagVariant =
+  "article" | "education" | "neutral" | "news" | "report" | "video";
 
 type TagProps = {
   label: string;
@@ -10,6 +16,7 @@ type TagProps = {
 const variantClassNames: Record<TagVariant, string> = {
   article: "bg-primary-soft text-primary",
   education: "bg-accent-soft text-warning",
+  neutral: "bg-bg-alt text-text-2",
   news: "bg-secondary-soft text-secondary-hover",
   report: "bg-sky-soft text-info",
   video: "bg-inverse text-text-inverse",

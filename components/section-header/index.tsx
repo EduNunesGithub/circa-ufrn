@@ -10,9 +10,10 @@ type SectionHeaderProps = {
   description?: Copy;
   descriptionOnMobile?: boolean;
   link?: { href: string; label: string };
-  overline: string;
+  overline: Copy;
   title: string;
   titleId: string;
+  titleOnMobile?: boolean;
   tone?: Tone;
 };
 
@@ -23,6 +24,7 @@ export function SectionHeader({
   overline,
   title,
   titleId,
+  titleOnMobile = true,
   tone = "default",
 }: SectionHeaderProps) {
   const inverse = tone === "inverse";
@@ -30,9 +32,14 @@ export function SectionHeader({
   return (
     <div className="gap-group desktop:flex-row desktop:items-end desktop:justify-between flex flex-col">
       <div className="gap-label flex min-w-0 flex-col">
-        <Overline tone={tone}>{overline}</Overline>
+        <Overline tone={tone}>
+          <ResponsiveCopy copy={overline} />
+        </Overline>
         <h2
-          className={inverse ? "text-text-inverse" : "text-text"}
+          className={cn(
+            inverse ? "text-text-inverse" : "text-text",
+            !titleOnMobile && "max-desktop:sr-only",
+          )}
           id={titleId}
         >
           {title}

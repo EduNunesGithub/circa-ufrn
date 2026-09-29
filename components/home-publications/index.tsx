@@ -1,6 +1,6 @@
 import type { MediaImage } from "@/components/media-frame";
 import type { Copy } from "@/components/responsive-copy";
-import type { TagVariant } from "@/components/tag";
+import type { PublicationTag } from "@/components/tag";
 
 import { ArrowLink } from "@/components/arrow-link";
 import { Entrance } from "@/components/entrance";
@@ -30,11 +30,6 @@ export type PublicationItem = {
   showOnMobile: boolean;
   tag: PublicationTag;
   title: Copy;
-};
-
-export type PublicationTag = {
-  label: string;
-  variant: TagVariant;
 };
 
 export function HomePublications() {

@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 
 import type { MediaImage } from "@/components/media-frame";
+import type { Copy } from "@/components/responsive-copy";
 
 import { MediaFrame } from "@/components/media-frame";
 import { Overline } from "@/components/overline";
+import { ResponsiveCopy } from "@/components/responsive-copy";
 
 type CtaBandProps = {
   actions: ReactNode;
-  body: string;
+  body: Copy;
   image: MediaImage;
   overline: string;
   title: string;
@@ -29,7 +31,9 @@ export function CtaBand({
         <h2 className="text-text-inverse" id={titleId}>
           {title}
         </h2>
-        <p className="text-text-inverse-2">{body}</p>
+        <p className="text-text-inverse-2">
+          <ResponsiveCopy copy={body} />
+        </p>
         <div className="gap-item wide:flex-row flex flex-col">{actions}</div>
       </div>
       <MediaFrame
