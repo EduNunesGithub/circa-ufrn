@@ -47,7 +47,7 @@ export function RootProfile() {
         role="img"
       >
         <div className="bg-bg h-1/6 shrink-0" />
-        <div className="border-text-2 relative flex flex-1 flex-col border-t-2">
+        <div className="border-border-strong relative flex flex-1 flex-col border-t-2">
           {soilLayers.map(({ color, label }) => (
             <div
               className={cn(

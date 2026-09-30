@@ -31,7 +31,7 @@ export function AboutHero() {
       entrance="reveal"
       hero
     >
-      <div className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col">
+      <div className="gap-block max-w-page px-gutter pt-edge pb-section mx-auto flex flex-col">
         <Breadcrumb items={aboutBreadcrumb} />
         <div className="gap-block wide:grid wide:grid-cols-2 wide:items-start flex flex-col">
           <div className="gap-group flex flex-col">

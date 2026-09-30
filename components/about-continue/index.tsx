@@ -17,7 +17,7 @@ export function AboutContinue() {
   return (
     <section aria-labelledby="about-continue-title">
       <Entrance
-        className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col"
+        className="gap-block max-w-page px-gutter pt-section pb-edge mx-auto flex flex-col"
         entrance="rise"
       >
         <h2 className="typo-overline text-secondary" id="about-continue-title">

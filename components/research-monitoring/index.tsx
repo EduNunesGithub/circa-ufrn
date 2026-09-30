@@ -8,8 +8,6 @@ import { IndicatorCard } from "@/components/research-monitoring/indicator-card";
 import { SectionHeader } from "@/components/section-header";
 import { Stagger } from "@/components/stagger";
 import { StaggerItem } from "@/components/stagger-item";
-import { cn } from "@/lib/cn";
-import { focusRingClassName } from "@/lib/control-styles";
 import { indicators, monitoringContent } from "@/lib/research/monitoring";
 
 export type IndicatorData = {
@@ -23,8 +21,7 @@ export type IndicatorData = {
 };
 
 export function ResearchMonitoring() {
-  const { description, overline, placeholder, seriesLabel, title } =
-    monitoringContent;
+  const { description, overline, placeholder, title } = monitoringContent;
 
   return (
     <section
@@ -48,27 +45,16 @@ export function ResearchMonitoring() {
             <PlaceholderBadge label={placeholder} />
           </div>
         </div>
-        <div
-          aria-label={seriesLabel}
-          className={cn(
-            "max-desktop:-mx-gutter max-desktop:overflow-x-auto",
-            focusRingClassName("default"),
-            "-outline-offset-4",
-          )}
-          role="region"
-          tabIndex={0}
-        >
-          <Stagger className="gap-item max-desktop:w-max max-desktop:px-gutter desktop:grid desktop:grid-cols-2 wide:grid-cols-4 flex">
-            {indicators.map((indicator) => (
-              <StaggerItem
-                className="desktop:w-auto w-68 shrink-0"
-                key={indicator.caption}
-              >
-                <IndicatorCard {...indicator} />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
+        <Stagger className="gap-item desktop:grid desktop:grid-cols-3 wide:grid-cols-4 flex flex-wrap">
+          {indicators.map((indicator) => (
+            <StaggerItem
+              className="min-w-0 grow basis-60"
+              key={indicator.caption}
+            >
+              <IndicatorCard {...indicator} />
+            </StaggerItem>
+          ))}
+        </Stagger>
       </Entrance>
     </section>
   );

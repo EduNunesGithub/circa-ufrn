@@ -15,7 +15,7 @@ export function CaatingaRestoration() {
   return (
     <section aria-labelledby="caatinga-restoration-title">
       <Entrance
-        className="gap-group max-w-page px-gutter py-section wide:grid wide:grid-cols-12 wide:items-center wide:gap-block mx-auto flex flex-col"
+        className="gap-group max-w-page px-gutter pt-section pb-edge wide:grid wide:grid-cols-12 wide:items-center wide:gap-block mx-auto flex flex-col"
         entrance="rise"
       >
         <div className="gap-group wide:col-span-5 wide:flex wide:flex-col contents">

@@ -50,23 +50,25 @@ export function LineItem({
           />
         </Accordion.Trigger>
       </Accordion.Header>
-      <Accordion.Panel className="gap-item pb-inset flex flex-col">
-        <MediaFrame
-          className="wide:hidden h-50 rounded-sm"
-          image={image}
-          sizes="(min-width: 56.75rem) 1px, 100vw"
-        />
-        <p className="text-text-2 max-w-text">{description}</p>
-        {tags && (
-          <ul className="gap-control desktop:flex hidden flex-wrap">
-            {tags.map((tag) => (
-              <li key={tag}>
-                <Tag label={tag} variant="neutral" />
-              </li>
-            ))}
-          </ul>
-        )}
-        <ArrowLink href={link.href} label={link.label} />
+      <Accordion.Panel className="ease-standard h-(--accordion-panel-height) overflow-hidden transition-[height] duration-250 data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
+        <div className="gap-item pb-inset flex flex-col">
+          <MediaFrame
+            className="wide:hidden h-50 rounded-sm"
+            image={image}
+            sizes="(min-width: 56.75rem) 1px, 100vw"
+          />
+          <p className="text-text-2 max-w-text">{description}</p>
+          {tags && (
+            <ul className="gap-control desktop:flex hidden flex-wrap">
+              {tags.map((tag) => (
+                <li key={tag}>
+                  <Tag label={tag} variant="neutral" />
+                </li>
+              ))}
+            </ul>
+          )}
+          <ArrowLink href={link.href} label={link.label} />
+        </div>
       </Accordion.Panel>
     </Accordion.Item>
   );

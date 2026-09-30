@@ -32,7 +32,7 @@ export function MethodStep({
           <span className="bg-hairline-inverse wide:h-px wide:min-h-0 wide:w-auto min-h-6 w-px flex-1" />
         )}
       </div>
-      <div className="gap-label pt-label wide:pt-0 flex min-w-0 flex-col">
+      <div className="gap-label flex min-w-0 flex-col">
         <p className="typo-meta text-accent uppercase">{meta}</p>
         <h3 className="typo-card-title text-text-inverse wrap-break-word hyphens-auto">
           {title}

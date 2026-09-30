@@ -7,7 +7,6 @@ export const monitoringContent = {
     "Campanhas regulares registram quatro indicadores. A série histórica é o que permite separar tendência de acaso climático.",
   overline: "Monitoramento",
   placeholder: "Séries ilustrativas",
-  seriesLabel: "Indicadores monitorados",
   title: "O que medimos em cada parcela",
 };
 

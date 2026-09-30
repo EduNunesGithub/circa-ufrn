@@ -29,14 +29,16 @@ export function ResearchHero() {
       entrance="reveal"
       hero
     >
-      <div className="gap-block max-w-page px-gutter pt-section mx-auto flex flex-col">
+      <div className="gap-block max-w-page px-gutter pt-edge mx-auto flex flex-col">
         <Breadcrumb items={researchBreadcrumb} />
         <div className="gap-block wide:grid wide:grid-cols-12 wide:items-end flex flex-col">
           <div className="gap-group wide:col-span-7 flex flex-col">
-            <Overline>{overline}</Overline>
-            <h1 className="typo-display text-text" id="research-hero-title">
-              {title}
-            </h1>
+            <div className="gap-label flex flex-col">
+              <Overline>{overline}</Overline>
+              <h1 className="typo-display text-text" id="research-hero-title">
+                {title}
+              </h1>
+            </div>
             <p className="typo-lead text-text-2 max-w-150">
               <ResponsiveCopy copy={lead} />
             </p>

@@ -9,7 +9,7 @@ export function ResearchCta() {
   return (
     <section aria-labelledby="research-cta-title">
       <Entrance
-        className="max-w-page px-gutter pb-section mx-auto"
+        className="max-w-page px-gutter pb-edge mx-auto"
         entrance="rise"
       >
         <CtaBand
