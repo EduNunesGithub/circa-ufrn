@@ -9,7 +9,7 @@
   --color-bg-alt: #eee7da;
   --color-border: #d8cebe;
   --color-border-inverse: #34503f;
-  --color-border-strong: #1e1b16;
+  --color-border-strong: #1e1b1680;
   --color-border-subtle: #e7dfd2;
   --color-disabled-bg: #e7e0d4;
   --color-error: #b0392a;
@@ -58,6 +58,7 @@
 
   --spacing-block: 24px;
   --spacing-control: 8px;
+  --spacing-edge: 24px;
   --spacing-group: 16px;
   --spacing-gutter: 20px;
   --spacing-header: 56px;
@@ -97,6 +98,7 @@
   @media (width >= 45rem) {
     :root {
       --spacing-block: 32px;
+      --spacing-edge: 32px;
       --spacing-group: 20px;
       --spacing-gutter: 60px;
       --spacing-header: 64px;

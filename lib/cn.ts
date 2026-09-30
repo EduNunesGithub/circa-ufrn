@@ -58,6 +58,7 @@ const twMerge = extendTailwindMerge({
       spacing: [
         "block",
         "control",
+        "edge",
         "group",
         "gutter",
         "header",

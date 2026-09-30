@@ -23,7 +23,7 @@ const CLASS_START = "(^|[\\s:!])";
 const RAW_SPACING = `${CLASS_START}(gap(-[xy])?|p[xytrblse]?)-(0[\\d.]|[1-9]|px\\b|\\[|\\()`;
 const RAW_COLOR = `${CLASS_START}(bg|text|border(-[xytrblse])?|divide|outline|ring(-offset)?|fill|stroke|from|via|to|decoration|accent|caret|placeholder)-(\\[(#|rgb|hsl|oklch|oklab|lab|lch|hwb|color|var)|\\((color:)?--)`;
 const SPACING_MESSAGE =
-  "R-UI-006: gap and padding use only the semantic spacing tokens (gutter, section, block, group, inset, item, label, control), never numeric steps other than 0 or arbitrary values.";
+  "R-UI-006: gap and padding use only the semantic spacing tokens (gutter, section, edge, block, group, inset, item, label, control), never numeric steps other than 0 or arbitrary values.";
 const COLOR_MESSAGE =
   "R-UI-007: colors come only from the theme color tokens; arbitrary color values are forbidden.";
 const NATIVE_PRIMITIVE_MESSAGE =
