@@ -1,4 +1,6 @@
-import { type Copy, ResponsiveCopy } from "@/components/responsive-copy";
+import type { Copy } from "@/components/responsive-copy";
+
+import { PhotoLabel } from "@/components/photo-label";
 import { cn } from "@/lib/cn";
 
 type SeasonLabelProps = {
@@ -11,9 +13,7 @@ export function SeasonLabel({ className, label }: SeasonLabelProps) {
     <div
       className={cn("px-gutter absolute inset-x-0 flex justify-end", className)}
     >
-      <p className="typo-overline bg-glass px-control text-text-inverse flex h-6 items-center rounded-sm backdrop-blur-md">
-        <ResponsiveCopy copy={label} />
-      </p>
+      <PhotoLabel label={label} />
     </div>
   );
 }

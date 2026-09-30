@@ -1,6 +1,7 @@
 import { LuDroplets, LuSun, LuThermometerSun } from "react-icons/lu";
 
-import type { ClimateFact, RainfallMonth } from "@/components/caatinga-climate";
+import type { ClimateFact } from "@/components/caatinga-climate";
+import type { ColumnDatum } from "@/components/column-plot";
 
 export const climateContent = {
   confirmation: "Valores a confirmar",
@@ -26,19 +27,19 @@ export const rainfallChartContent = {
   title: "Quatro meses concentram quase toda a chuva do ano",
 };
 
-export const rainfallMonths: RainfallMonth[] = [
-  { initial: "J", name: "Janeiro", value: 80 },
-  { initial: "F", name: "Fevereiro", rainy: true, value: 120 },
-  { initial: "M", name: "Março", rainy: true, value: 180 },
-  { initial: "A", name: "Abril", rainy: true, value: 160 },
-  { initial: "M", name: "Maio", rainy: true, value: 90 },
-  { initial: "J", name: "Junho", value: 40 },
-  { initial: "J", name: "Julho", value: 20 },
-  { initial: "A", name: "Agosto", value: 7 },
-  { initial: "S", name: "Setembro", value: 4 },
-  { initial: "O", name: "Outubro", value: 7 },
-  { initial: "N", name: "Novembro", value: 16 },
-  { initial: "D", name: "Dezembro", value: 40 },
+export const rainfallMonths: ColumnDatum[] = [
+  { label: "J", name: "Janeiro", value: 80 },
+  { highlight: true, label: "F", name: "Fevereiro", value: 120 },
+  { highlight: true, label: "M", name: "Março", value: 180 },
+  { highlight: true, label: "A", name: "Abril", value: 160 },
+  { highlight: true, label: "M", name: "Maio", value: 90 },
+  { label: "J", name: "Junho", value: 40 },
+  { label: "J", name: "Julho", value: 20 },
+  { label: "A", name: "Agosto", value: 7 },
+  { label: "S", name: "Setembro", value: 4 },
+  { label: "O", name: "Outubro", value: 7 },
+  { label: "N", name: "Novembro", value: 16 },
+  { label: "D", name: "Dezembro", value: 40 },
 ];
 
 export const climateFacts: ClimateFact[] = [

@@ -11,7 +11,7 @@ type SectionHeaderProps = {
   descriptionOnMobile?: boolean;
   link?: { href: string; label: string };
   overline: Copy;
-  title: string;
+  title: Copy;
   titleId: string;
   titleOnMobile?: boolean;
   tone?: Tone;
@@ -42,7 +42,7 @@ export function SectionHeader({
           )}
           id={titleId}
         >
-          {title}
+          <ResponsiveCopy copy={title} />
         </h2>
         {description && (
           <p

@@ -12,13 +12,6 @@ export type ClimateFact = {
   value: string;
 };
 
-export type RainfallMonth = {
-  initial: string;
-  name: string;
-  rainy?: boolean;
-  value: number;
-};
-
 export function CaatingaClimate() {
   const { confirmation, description, overline, title } = climateContent;
 

@@ -8,6 +8,7 @@ import { cn } from "@/lib/cn";
 
 export type MetricData = {
   illustrative?: boolean;
+  illustrativeOnMobile?: boolean;
   label: Copy;
   note?: Copy;
   noteOnMobile?: boolean;
@@ -21,6 +22,7 @@ type MetricProps = {
 
 export function Metric({
   illustrative = false,
+  illustrativeOnMobile = true,
   label,
   note,
   noteOnMobile = true,
@@ -63,7 +65,11 @@ export function Metric({
           <ResponsiveCopy copy={note} />
         </p>
       )}
-      {illustrative && <PlaceholderBadge />}
+      {illustrative && (
+        <div className={cn(!illustrativeOnMobile && "desktop:block hidden")}>
+          <PlaceholderBadge />
+        </div>
+      )}
     </div>
   );
 }
