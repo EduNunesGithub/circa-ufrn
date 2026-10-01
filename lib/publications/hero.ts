@@ -50,7 +50,6 @@ export const contentCategories: ContentCategory[] = [
   },
   {
     count: "12",
-    desktopOnly: true,
     href: "#materiais",
     icon: LuBookOpen,
     label: "Materiais educativos",
@@ -65,7 +64,6 @@ export const contentCategories: ContentCategory[] = [
   },
   {
     count: "18",
-    desktopOnly: true,
     href: "#documentos",
     icon: LuFolder,
     label: "Documentos",

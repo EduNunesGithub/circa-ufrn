@@ -37,16 +37,18 @@ export function PublicationsFeatured() {
           sizes="(min-width: 56.75rem) 60vw, 100vw"
         />
         <div className="gap-group wide:col-span-5 flex flex-col">
-          <div className="gap-item flex flex-wrap items-center">
-            <Overline>{overline}</Overline>
-            <Tag label={tag.label} variant={tag.variant} />
+          <div className="gap-label flex flex-col">
+            <div className="gap-item flex flex-wrap items-center">
+              <Overline>{overline}</Overline>
+              <Tag label={tag.label} variant={tag.variant} />
+            </div>
+            <h2
+              className="typo-headline text-text"
+              id="publications-featured-title"
+            >
+              {title}
+            </h2>
           </div>
-          <h2
-            className="typo-headline text-text"
-            id="publications-featured-title"
-          >
-            {title}
-          </h2>
           <p className="text-text-2">
             <ResponsiveCopy copy={excerpt} />
           </p>

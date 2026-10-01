@@ -13,7 +13,6 @@ import {
 
 export type ContentCategory = {
   count: string;
-  desktopOnly?: boolean;
   href: string;
   icon: IconType;
   label: string;
