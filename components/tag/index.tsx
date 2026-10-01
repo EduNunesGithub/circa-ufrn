@@ -6,7 +6,7 @@ export type PublicationTag = {
 };
 
 export type TagVariant =
-  "article" | "education" | "neutral" | "news" | "report" | "video";
+  "accent" | "article" | "education" | "neutral" | "news" | "report" | "video";
 
 type TagProps = {
   label: string;
@@ -14,6 +14,7 @@ type TagProps = {
 };
 
 const variantClassNames: Record<TagVariant, string> = {
+  accent: "bg-accent text-inverse",
   article: "bg-primary-soft text-primary",
   education: "bg-accent-soft text-warning",
   neutral: "bg-bg-alt text-text-2",

@@ -1,4 +1,4 @@
-import type { ResearchPublication } from "@/components/research-publications";
+import type { PublicationData } from "@/components/publication-item";
 
 export const researchPublicationsContent = {
   link: { href: "/publicacoes", label: "Todas as publicações" },
@@ -6,13 +6,12 @@ export const researchPublicationsContent = {
   title: "Para ir mais fundo",
 };
 
-export const publicationsHref = "/publicacoes";
-
-export const researchPublications: ResearchPublication[] = [
+export const researchPublications: PublicationData[] = [
   {
     authors: "Silva, A. M.; Oliveira, R. T.; Andrade, L. C.; Costa, J. P.",
     details: "v. 33 · e14210",
     doi: "10.0000/rec.00000",
+    href: "/publicacoes",
     journal: "Restoration Ecology",
     tag: { label: "Artigo científico", variant: "article" },
     title:
@@ -23,6 +22,7 @@ export const researchPublications: ResearchPublication[] = [
     authors: "Lins, A. B.; Moura, R.; Duarte, H.",
     details: "v. 221",
     doi: "10.0000/jae.00000",
+    href: "/publicacoes",
     journal: "Journal of Arid Environments",
     tag: { label: "Artigo científico", variant: "article" },
     title:

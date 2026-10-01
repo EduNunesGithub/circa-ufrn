@@ -160,6 +160,10 @@
   @apply font-display desktop:text-6xl text-4xl font-normal;
 }
 
+@utility typo-headline {
+  @apply font-display desktop:text-5xl text-3xl font-normal;
+}
+
 @utility typo-label {
   @apply font-sans text-sm font-medium;
 }
@@ -182,6 +186,10 @@
 
 @utility typo-meta {
   @apply font-mono text-xs font-normal;
+}
+
+@utility typo-numeral {
+  @apply font-mono text-sm font-medium;
 }
 
 @utility typo-overline {

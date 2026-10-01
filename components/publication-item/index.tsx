@@ -1,21 +1,30 @@
 import Link from "next/link";
 import { LuArrowUpRight, LuDownload } from "react-icons/lu";
 
-import type { ResearchPublication } from "@/components/research-publications";
-
-import { Tag } from "@/components/tag";
+import { type PublicationTag, Tag } from "@/components/tag";
 import { iconButtonClassName } from "@/lib/control-styles";
-import { publicationsHref } from "@/lib/research/publications";
+
+export type PublicationData = {
+  authors: string;
+  details: string;
+  doi: string;
+  href: string;
+  journal: string;
+  tag: PublicationTag;
+  title: string;
+  year: string;
+};
 
 export function PublicationItem({
   authors,
   details,
   doi,
+  href,
   journal,
   tag,
   title,
   year,
-}: ResearchPublication) {
+}: PublicationData) {
   return (
     <article className="border-border gap-label py-inset desktop:flex-row desktop:items-start desktop:gap-block flex flex-col border-b">
       <p className="typo-meta text-text desktop:block hidden w-22 shrink-0">
@@ -40,14 +49,14 @@ export function PublicationItem({
           <Link
             aria-label={`Ver a publicação “${title}”`}
             className={iconButtonClassName("default")}
-            href={publicationsHref}
+            href={href}
           >
             <LuArrowUpRight aria-hidden className="size-5" />
           </Link>
           <Link
             aria-label={`Baixar o PDF de “${title}”`}
             className={iconButtonClassName("default")}
-            href={publicationsHref}
+            href={href}
           >
             <LuDownload aria-hidden className="size-5" />
           </Link>

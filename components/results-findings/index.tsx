@@ -2,10 +2,10 @@ import type { Copy } from "@/components/responsive-copy";
 
 import { Entrance } from "@/components/entrance";
 import { FindingCard } from "@/components/results-findings/finding-card";
-import { FindingsCarousel } from "@/components/results-findings/findings-carousel";
 import { SectionHeader } from "@/components/section-header";
 import { Stagger } from "@/components/stagger";
 import { StaggerItem } from "@/components/stagger-item";
+import { SwipeCarousel } from "@/components/swipe-carousel";
 import { findings, findingsContent } from "@/lib/results/findings";
 
 export type Finding = {
@@ -35,7 +35,12 @@ export function ResultsFindings() {
           titleId="results-findings-title"
         />
         <div className="wide:hidden">
-          <FindingsCarousel label={carouselLabel} total={findings.length}>
+          <SwipeCarousel
+            id="results-findings-slides"
+            label={carouselLabel}
+            slideClassName="w-68"
+            total={findings.length}
+          >
             {findings.map((finding) => (
               <FindingCard
                 {...finding}
@@ -44,7 +49,7 @@ export function ResultsFindings() {
                 variant="card"
               />
             ))}
-          </FindingsCarousel>
+          </SwipeCarousel>
         </div>
         <Stagger className="gap-block wide:grid hidden grid-cols-3">
           {findings.map((finding) => (

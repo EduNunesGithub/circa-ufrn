@@ -1,8 +1,7 @@
 import type { PageAnchor } from "@/components/research-hero";
 
-import { ResponsiveCopy } from "@/components/responsive-copy";
+import { Chip } from "@/components/chip";
 import { cn } from "@/lib/cn";
-import { focusRingClassName } from "@/lib/control-styles";
 
 type AnchorNavProps = {
   anchors: PageAnchor[];
@@ -20,29 +19,11 @@ export function AnchorNav({ anchors, label }: AnchorNavProps) {
       </p>
       <ul className="gap-control flex min-w-0 flex-1 flex-wrap">
         {anchors.map(
-          ({ desktopOnly = false, id, label: anchorLabel }, index) => {
-            const featured = index === 0;
-
-            return (
-              <li
-                className={cn(desktopOnly && "desktop:block hidden")}
-                key={id}
-              >
-                <a
-                  className={cn(
-                    "typo-label px-inset ease-standard flex h-10 items-center rounded-full border whitespace-nowrap transition-colors duration-250",
-                    featured
-                      ? "border-border-strong bg-text text-text-inverse"
-                      : "border-border text-text-2 hover:bg-bg-alt",
-                    focusRingClassName("default"),
-                  )}
-                  href={`#${id}`}
-                >
-                  <ResponsiveCopy copy={anchorLabel} />
-                </a>
-              </li>
-            );
-          },
+          ({ desktopOnly = false, id, label: anchorLabel }, index) => (
+            <li className={cn(desktopOnly && "desktop:block hidden")} key={id}>
+              <Chip active={index === 0} href={`#${id}`} label={anchorLabel} />
+            </li>
+          ),
         )}
       </ul>
     </nav>

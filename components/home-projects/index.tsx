@@ -1,5 +1,5 @@
 import { Entrance } from "@/components/entrance";
-import { ProjectsCarousel } from "@/components/home-projects/projects-carousel";
+import { HeaderCarousel } from "@/components/header-carousel";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeader } from "@/components/section-header";
 import { projects, projectsContent } from "@/lib/home/projects";
@@ -16,7 +16,7 @@ export function HomeProjects() {
         className="max-w-page px-gutter py-section mx-auto"
         entrance="rise"
       >
-        <ProjectsCarousel
+        <HeaderCarousel
           header={
             <SectionHeader
               description={description}
@@ -27,12 +27,16 @@ export function HomeProjects() {
               tone="inverse"
             />
           }
+          id="home-projects-slides"
+          label="Projetos em andamento"
+          slideClassName="w-68 desktop:w-78"
+          tone="inverse"
           total={projects.length}
         >
           {projects.map((project) => (
             <ProjectCard {...project} key={project.title} tone="inverse" />
           ))}
-        </ProjectsCarousel>
+        </HeaderCarousel>
       </Entrance>
     </section>
   );

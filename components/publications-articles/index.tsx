@@ -1,33 +1,46 @@
 import { ArrowLink } from "@/components/arrow-link";
 import { Entrance } from "@/components/entrance";
-import { PublicationItem } from "@/components/publication-item";
+import {
+  type PublicationData,
+  PublicationItem,
+} from "@/components/publication-item";
 import { SectionHeader } from "@/components/section-header";
 import { Stagger } from "@/components/stagger";
 import { StaggerItem } from "@/components/stagger-item";
-import {
-  researchPublications,
-  researchPublicationsContent,
-} from "@/lib/research/publications";
+import { cn } from "@/lib/cn";
+import { articles, articlesContent } from "@/lib/publications/articles";
 
-export function ResearchPublications() {
-  const { link, overline, title } = researchPublicationsContent;
+export type ListedPublication = {
+  desktopOnly?: boolean;
+} & PublicationData;
+
+export function PublicationsArticles() {
+  const { description, link, overline, title } = articlesContent;
 
   return (
-    <section aria-labelledby="research-publications-title">
+    <section
+      aria-labelledby="publications-articles-title"
+      className="bg-bg-alt"
+      id="artigos"
+    >
       <Entrance
         className="gap-block max-w-page px-gutter py-section mx-auto flex flex-col"
         entrance="slide"
       >
         <SectionHeader
+          description={description}
+          descriptionOnMobile={false}
           link={link}
           overline={overline}
           title={title}
-          titleId="research-publications-title"
-          titleOnMobile={false}
+          titleId="publications-articles-title"
         />
         <Stagger className="border-border flex flex-col border-t">
-          {researchPublications.map((publication) => (
-            <StaggerItem key={publication.doi}>
+          {articles.map(({ desktopOnly = false, ...publication }) => (
+            <StaggerItem
+              className={cn(desktopOnly && "desktop:block hidden")}
+              key={publication.doi}
+            >
               <PublicationItem {...publication} />
             </StaggerItem>
           ))}
