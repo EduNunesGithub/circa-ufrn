@@ -18,7 +18,7 @@ export const featuredContent: FeaturedContent = {
   ),
   overline: "Em destaque",
   pdf: { href: "/publicacoes", label: "Artigo (PDF)" },
-  read: { href: "/publicacoes", label: "Ler o resumo" },
+  read: { href: "/publicacoes/raizes-mais-longas", label: "Ler o resumo" },
   tag: { label: "Artigo científico", variant: "article" },
   title: "Raízes mais longas, mudas mais resistentes",
 };

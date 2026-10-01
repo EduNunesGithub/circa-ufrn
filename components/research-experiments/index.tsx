@@ -1,5 +1,3 @@
-import type { Copy } from "@/components/responsive-copy";
-
 import { Entrance } from "@/components/entrance";
 import { MediaFrame } from "@/components/media-frame";
 import { SpecSheet } from "@/components/research-experiments/spec-sheet";
@@ -8,12 +6,6 @@ import {
   experimentPhotos,
   experimentsContent,
 } from "@/lib/research/experiments";
-
-export type SpecRow = {
-  desktopOnly?: boolean;
-  label: string;
-  value: Copy;
-};
 
 export function ResearchExperiments() {
   const { body, overline, title } = experimentsContent;

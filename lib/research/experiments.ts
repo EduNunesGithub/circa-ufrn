@@ -1,5 +1,5 @@
+import type { DataRow } from "@/components/data-list";
 import type { MediaImage } from "@/components/media-frame";
-import type { SpecRow } from "@/components/research-experiments";
 
 import { homeImage } from "@/lib/home/images";
 
@@ -35,7 +35,7 @@ export const experimentPhotos: {
   ),
 };
 
-export const specRows: SpecRow[] = [
+export const specRows: DataRow[] = [
   {
     label: "Local",
     value: { full: "Área experimental · Seridó/RN", short: "Seridó/RN" },

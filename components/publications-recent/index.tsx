@@ -1,21 +1,9 @@
-import type { MediaImage } from "@/components/media-frame";
-import type { Copy } from "@/components/responsive-copy";
-import type { PublicationTag } from "@/components/tag";
-
 import { Entrance } from "@/components/entrance";
-import { NewsCard } from "@/components/publications-recent/news-card";
+import { NewsCard } from "@/components/news-card";
 import { SectionHeader } from "@/components/section-header";
 import { Stagger } from "@/components/stagger";
 import { StaggerItem } from "@/components/stagger-item";
 import { recentContent, recentNews } from "@/lib/publications/recent";
-
-export type NewsItem = {
-  date: string;
-  excerpt: string;
-  image: MediaImage;
-  tag: PublicationTag;
-  title: Copy;
-};
 
 export function PublicationsRecent() {
   const { link, overline, title } = recentContent;

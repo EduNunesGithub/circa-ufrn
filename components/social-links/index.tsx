@@ -1,15 +1,19 @@
 import { iconButtonClassName, type Tone } from "@/lib/control-styles";
 import { isWebUrl } from "@/lib/navigation";
-import { socialLinks } from "@/lib/site-info";
+import { type IconLink, socialLinks } from "@/lib/site-info";
 
 type SocialLinksProps = {
+  links?: IconLink[];
   tone?: Tone;
 };
 
-export function SocialLinks({ tone = "inverse" }: SocialLinksProps) {
+export function SocialLinks({
+  links = socialLinks,
+  tone = "inverse",
+}: SocialLinksProps) {
   return (
     <ul className="gap-control flex">
-      {socialLinks.map(({ href, icon: Icon, label }) => (
+      {links.map(({ href, icon: Icon, label }) => (
         <li key={label}>
           <a
             aria-label={label}

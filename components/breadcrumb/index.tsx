@@ -2,12 +2,13 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { LuChevronRight } from "react-icons/lu";
 
+import { type Copy, ResponsiveCopy } from "@/components/responsive-copy";
 import { cn } from "@/lib/cn";
 import { focusRingClassName, type Tone } from "@/lib/control-styles";
 
 export type BreadcrumbItem = {
   href?: string;
-  label: string;
+  label: Copy;
 };
 
 type BreadcrumbProps = {
@@ -22,7 +23,7 @@ export function Breadcrumb({ items, tone = "default" }: BreadcrumbProps) {
     <nav aria-label="Trilha de navegação">
       <ol className="gap-control flex flex-wrap items-center">
         {items.map(({ href, label }, index) => (
-          <Fragment key={label}>
+          <Fragment key={href ?? "current"}>
             {index > 0 && (
               <li aria-hidden className="flex">
                 <LuChevronRight
@@ -43,7 +44,7 @@ export function Breadcrumb({ items, tone = "default" }: BreadcrumbProps) {
                   )}
                   href={href}
                 >
-                  {label}
+                  <ResponsiveCopy copy={label} />
                 </Link>
               ) : (
                 <span
@@ -53,7 +54,7 @@ export function Breadcrumb({ items, tone = "default" }: BreadcrumbProps) {
                     inverse && "text-text-inverse",
                   )}
                 >
-                  {label}
+                  <ResponsiveCopy copy={label} />
                 </span>
               )}
             </li>

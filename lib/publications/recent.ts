@@ -1,4 +1,4 @@
-import type { NewsItem } from "@/components/publications-recent";
+import type { NewsItem } from "@/components/news-card";
 
 import { homeImage } from "@/lib/home/images";
 
